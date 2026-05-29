@@ -1,0 +1,30 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local environment and secrets
+.env
+.env.*
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.zip
+
+# Frontend/build outputs if tooling is added later
+node_modules/
+dist/
+build/
+coverage/
+
+# Browser/test artifacts
+test-results/
+playwright-report/
+
+# Local source/candidate portrait material
+小哲本人生成图/
+小哲本人正脸照/
+摄影师肖像模板/
