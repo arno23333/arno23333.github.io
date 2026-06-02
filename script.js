@@ -25,21 +25,188 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const openHashDetails = () => {
+    if (!window.location.hash) return;
+    const target = document.getElementById(window.location.hash.slice(1));
+    if (!target || target.tagName.toLowerCase() !== "details") return;
+    target.open = true;
+    window.setTimeout(() => {
+      target.scrollIntoView({ block: "start" });
+    }, 0);
+  };
+
+  openHashDetails();
+  window.addEventListener("hashchange", openHashDetails);
+
+  document.querySelectorAll("[data-hero-carousel]").forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
+    const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+    if (slides.length < 2) return;
+
+    let activeIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
+    if (activeIndex < 0) activeIndex = 0;
+    let intervalId = null;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragLastX = 0;
+
+    const showSlide = (index) => {
+      activeIndex = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("is-active", slideIndex === activeIndex);
+      });
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === activeIndex);
+      });
+    };
+
+    const stopAuto = () => {
+      if (intervalId) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const startAuto = () => {
+      stopAuto();
+      intervalId = window.setInterval(() => {
+        showSlide(activeIndex + 1);
+      }, 3400);
+    };
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        showSlide(index);
+        startAuto();
+      });
+    });
+
+    carousel.addEventListener("pointerdown", (event) => {
+      if (event.target.closest("[data-carousel-dot]")) return;
+      isDragging = true;
+      dragStartX = event.clientX;
+      dragLastX = event.clientX;
+      carousel.classList.add("is-dragging");
+      stopAuto();
+      if (carousel.setPointerCapture) {
+        carousel.setPointerCapture(event.pointerId);
+      }
+    });
+
+    carousel.addEventListener("pointermove", (event) => {
+      if (!isDragging) return;
+      dragLastX = event.clientX;
+    });
+
+    const finishDrag = () => {
+      if (!isDragging) return;
+      const deltaX = dragLastX - dragStartX;
+      if (Math.abs(deltaX) > 44) {
+        showSlide(activeIndex + (deltaX < 0 ? 1 : -1));
+      }
+      isDragging = false;
+      carousel.classList.remove("is-dragging");
+      startAuto();
+    };
+
+    carousel.addEventListener("pointerup", finishDrag);
+    carousel.addEventListener("pointercancel", finishDrag);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        stopAuto();
+      } else {
+        startAuto();
+      }
+    });
+
+    showSlide(activeIndex);
+    startAuto();
+  });
+
+  const storyPhotos = Array.from(document.querySelectorAll("[data-story]"));
+  const storyPanels = Array.from(document.querySelectorAll("[data-story-panel]"));
+  if (storyPhotos.length && storyPanels.length) {
+    const setActiveStory = (key, activePhoto) => {
+      storyPanels.forEach((panel) => {
+        panel.classList.toggle("is-active", panel.dataset.storyPanel === key);
+      });
+      storyPhotos.forEach((photo) => {
+        photo.classList.toggle("is-current", photo === activePhoto);
+      });
+    };
+
+    const chooseClosestPhoto = () => {
+      const viewportCenter = window.innerHeight / 2;
+      let closestPhoto = storyPhotos[0];
+      let closestDistance = Number.POSITIVE_INFINITY;
+      storyPhotos.forEach((photo) => {
+        const rect = photo.getBoundingClientRect();
+        const photoCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(photoCenter - viewportCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestPhoto = photo;
+        }
+      });
+      setActiveStory(closestPhoto.dataset.story, closestPhoto);
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visibleEntries[0]) {
+          const activePhoto = visibleEntries[0].target;
+          setActiveStory(activePhoto.dataset.story, activePhoto);
+        }
+      }, {
+        rootMargin: "-34% 0px -34% 0px",
+        threshold: [0.25, 0.4, 0.55, 0.7],
+      });
+
+      storyPhotos.forEach((photo) => observer.observe(photo));
+    } else {
+      window.addEventListener("scroll", chooseClosestPhoto, { passive: true });
+      window.addEventListener("resize", chooseClosestPhoto);
+    }
+
+    chooseClosestPhoto();
+  }
+
   const filterButtons = document.querySelectorAll("[data-filter]");
   const portfolioItems = document.querySelectorAll("[data-category]");
+
+  const applyPortfolioFilter = (filter) => {
+    if (!filterButtons.length || !portfolioItems.length) return;
+    const nextFilter = Array.from(filterButtons).some((button) => button.dataset.filter === filter) ? filter : "all";
+    filterButtons.forEach((item) => {
+      item.classList.toggle("is-active", item.dataset.filter === nextFilter);
+    });
+
+    portfolioItems.forEach((item) => {
+      const shouldShow = nextFilter === "all" || item.dataset.category === nextFilter;
+      item.classList.toggle("is-hidden", !shouldShow);
+    });
+  };
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const filter = button.dataset.filter;
-      filterButtons.forEach((item) => item.classList.remove("is-active"));
-      button.classList.add("is-active");
-
-      portfolioItems.forEach((item) => {
-        const shouldShow = filter === "all" || item.dataset.category === filter;
-        item.classList.toggle("is-hidden", !shouldShow);
-      });
+      applyPortfolioFilter(filter);
+      if (window.location.hash.slice(1) !== filter) {
+        history.replaceState(null, "", filter === "all" ? window.location.pathname : `#${filter}`);
+      }
     });
   });
+
+  if (filterButtons.length && portfolioItems.length) {
+    applyPortfolioFilter(window.location.hash.slice(1) || "all");
+    window.addEventListener("hashchange", () => {
+      applyPortfolioFilter(window.location.hash.slice(1) || "all");
+    });
+  }
 
   document.querySelectorAll("[data-date-picker]").forEach((picker) => {
     const field = picker.closest(".date-range-field");
