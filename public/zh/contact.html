@@ -1,0 +1,258 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>联系咨询 | Fiona Tang Studio</title>
+    <meta name="description" content="联系 Fiona Tang Studio：咨询档期、价格、婚礼、私奔、情侣和订婚拍摄。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css?v=20260616-contact-reviews">
+  </head>
+  <body class="contact-page">
+    <header class="site-header">
+      <a class="brand" href="/zh/" aria-label="Fiona Tang Studio 首页">
+        <span class="brand-copy">
+          <span class="brand-mark">Fiona Tang</span>
+          <span class="brand-sub">Studio</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-nav"><span aria-hidden="true"></span>菜单</button>
+      <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+        <a href="/zh/">首页</a>
+        <a href="/zh/portfolio.html">作品</a>
+        <a href="/zh/about.html">关于</a>
+        <a href="/zh/booking.html">服务与报价</a>
+        <a href="/zh/process.html">流程</a>
+        <a href="/zh/faq.html">常见问题</a>
+        <a class="nav-cta" href="/zh/contact.html">咨询档期</a>
+      </nav>
+    </header>
+
+    <main class="page-main">
+      <section class="section contact-first-section">
+        <div class="container contact-layout single">
+          <section class="contact-visual-carousel" aria-label="拍摄氛围预览" data-hero-carousel>
+            <div class="contact-visual-track">
+              <figure class="contact-visual-slide is-active" data-carousel-slide>
+                <img src="/assets/work/website/56-dscf7516.jpg" alt="南法屋顶前的蓝裙肖像">
+              </figure>
+              <figure class="contact-visual-slide" data-carousel-slide>
+                <img src="/assets/work/website/82-26.jpg" alt="山景草坪上的小桌与椅子">
+              </figure>
+              <figure class="contact-visual-slide" data-carousel-slide>
+                <img src="/assets/work/website/01-9k6a0273.jpg" alt="从市政厅走出的婚礼新人">
+              </figure>
+            </div>
+            <div class="contact-visual-dots" aria-label="切换拍摄氛围照片">
+              <button class="contact-visual-dot is-active" type="button" data-carousel-dot aria-label="查看第 1 张照片"></button>
+              <button class="contact-visual-dot" type="button" data-carousel-dot aria-label="查看第 2 张照片"></button>
+              <button class="contact-visual-dot" type="button" data-carousel-dot aria-label="查看第 3 张照片"></button>
+            </div>
+          </section>
+
+          <form class="inquiry-form contact-panel minimal-form compact-inquiry" action="https://api.web3forms.com/submit" method="POST" data-inquiry-form>
+            <input type="hidden" name="access_key" value="ab542d30-e15f-483c-9508-aa2bad8f1d44">
+            <input type="hidden" name="subject" value="Fiona Tang Studio 新咨询">
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" hidden>
+            <p class="eyebrow">联系我</p>
+            <h1 class="form-heading">先告诉我你的想法</h1>
+            <p class="muted">不用一开始就准备得很完整。你可以先写下旅行计划、拍摄类型、喜欢的氛围、求婚或纪念日安排，以及任何你希望我提前知道的小细节。</p>
+            <p class="reply-note">我通常会在 48 小时内回复。如果没有看到回信，也可以顺手检查一下垃圾邮件文件夹。</p>
+            <div class="form-grid">
+              <div class="field line-field">
+                <label for="first-name">名字 *</label>
+                <input id="first-name" name="first-name" autocomplete="given-name" placeholder="名字 *（也可以写伴侣的名字）" required>
+              </div>
+              <div class="field line-field">
+                <label for="last-name">姓氏</label>
+                <input id="last-name" name="last-name" autocomplete="family-name" placeholder="姓氏">
+              </div>
+              <div class="field line-field">
+                <label for="email">邮箱 *</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="邮箱 *" required>
+              </div>
+              <div class="field line-field date-range-field">
+                <label for="date-trigger">希望拍摄日期 *</label>
+                <button class="date-trigger" id="date-trigger" type="button" data-date-trigger data-placeholder="希望拍摄日期 *" aria-expanded="false" aria-controls="date-picker">希望拍摄日期 *</button>
+                <input id="date-range" name="desired-date" type="hidden" data-date-value>
+                <p class="date-error" data-date-error hidden>请选择日期或日期范围。</p>
+                <div class="date-picker" id="date-picker" data-date-picker hidden>
+                  <div class="date-picker-header">
+                    <button class="date-nav" type="button" data-calendar-prev aria-label="上个月">&lt;</button>
+                    <strong data-calendar-label>月份</strong>
+                    <button class="date-nav" type="button" data-calendar-next aria-label="下个月">&gt;</button>
+                  </div>
+                  <div class="date-weekdays" aria-hidden="true">
+                    <span>一</span>
+                    <span>二</span>
+                    <span>三</span>
+                    <span>四</span>
+                    <span>五</span>
+                    <span>六</span>
+                    <span>日</span>
+                  </div>
+                  <div class="date-grid" data-calendar-grid role="grid" aria-label="选择希望拍摄的日期"></div>
+                  <p class="date-help">先点击开始日期，再点击结束日期。只拍一天的话，可以选择同一天作为开始和结束。</p>
+                </div>
+              </div>
+              <div class="field line-field full">
+                <label for="location">地点 *</label>
+                <input id="location" name="location" placeholder="地点 *（尼斯、摩纳哥、普罗旺斯或其他城市）" required>
+                <p class="field-note">常规拍摄区域包括尼斯及附近蔚蓝海岸地点；普罗旺斯、圣特罗佩或法国其他城市可根据日期、交通和拍摄计划单独确认。</p>
+              </div>
+              <div class="field line-field full">
+                <label for="travel-origin">你从哪里飞过来？</label>
+                <input id="travel-origin" name="travel-origin" placeholder="你从哪里飞来？（如巴黎、伦敦、上海；已在南法也可写当前城市）">
+              </div>
+              <div class="field line-field full select-field">
+                <label for="session-type">你想咨询哪类拍摄？*</label>
+                <select id="session-type" name="session-type" required data-other-select aria-controls="session-type-other-field">
+                  <option value="" selected disabled>想咨询哪类拍摄？*</option>
+                  <option value="个人旅行肖像">个人旅行肖像</option>
+                  <option value="情侣拍摄">情侣拍摄</option>
+                  <option value="求婚拍摄">求婚拍摄</option>
+                  <option value="婚礼拍摄">婚礼拍摄</option>
+                  <option value="家庭拍摄">家庭拍摄</option>
+                  <option value="个人品牌肖像">个人品牌肖像</option>
+                  <option value="还不确定">还不确定</option>
+                  <option value="Other">其他</option>
+                </select>
+              </div>
+              <div class="field line-field full other-detail" id="session-type-other-field" hidden>
+                <label for="session-type-other">简单写一下你想咨询的拍摄类型 *</label>
+                <input id="session-type-other" name="session-type-other" placeholder="其他拍摄类型 *（小型庆祝、活动记录等）" disabled>
+              </div>
+              <div class="field line-field full select-field">
+                <label for="budget-range">大致预算范围</label>
+                <select id="budget-range" name="budget-range">
+                  <option value="" selected>大致预算范围</option>
+                  <option value="还不确定">还不确定</option>
+                  <option value="约 300-500 欧">约 300-500 欧</option>
+                  <option value="500-800 欧">500-800 欧</option>
+                  <option value="800-1200 欧">800-1200 欧</option>
+                  <option value="1200 欧以上">1200 欧以上</option>
+                  <option value="婚礼或定制报价">婚礼或定制报价</option>
+                </select>
+              </div>
+              <div class="field line-field full select-field">
+                <label for="heard-from">你是从哪里知道我的？</label>
+                <select id="heard-from" name="heard-from" data-other-select aria-controls="heard-from-other-field">
+                  <option value="" selected>你是从哪里知道我的？</option>
+                  <option value="Google">Google</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="小红书">小红书</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="抖音">抖音</option>
+                  <option value="朋友推荐">朋友推荐</option>
+                  <option value="婚礼策划或其他供应商">婚礼策划或其他供应商</option>
+                  <option value="Other">其他</option>
+                </select>
+              </div>
+              <div class="field line-field full other-detail" id="heard-from-other-field" hidden>
+                <label for="heard-from-other">你是在哪里看到我的？*</label>
+                <input id="heard-from-other" name="heard-from-other" placeholder="在哪里看到我的？*（博客、朋友、平台、供应商等）" disabled>
+              </div>
+              <div class="field line-field full">
+                <label for="message">留言</label>
+                <textarea id="message" name="message" placeholder="留言：旅行计划、拍摄想法、喜欢的氛围、服装、地点、求婚安排等。"></textarea>
+              </div>
+            </div>
+            <button class="button" type="submit">发送咨询</button>
+            <p class="form-message" data-form-message tabindex="-1" role="status" aria-live="polite">谢谢，你的咨询已经发送。Fiona 会在 48 小时内回复。</p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section band contact-response-section">
+        <div class="container">
+          <div class="cta-band">
+            <div>
+              <p class="eyebrow">咨询提示</p>
+              <h2>咨询更快得到回复</h2>
+              <p>请尽量写清日期、地点、从哪里飞来、拍摄类型、预算范围和你最在意的画面。这样 Fiona 可以更快判断是否适合、需要哪些服务、报价怎么组成。</p>
+            </div>
+            <a class="button" href="/zh/faq.html">先看常见问题</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-review-section" aria-label="客户评价">
+        <div class="container">
+          <div class="reviews-showcase contact-reviews" aria-label="客户评价">
+            <article class="review-feature">
+              <img class="review-avatar" src="/assets/reviews/andjela-todorovic-avatar.jpg" alt="Andjela Todorović">
+              <div class="review-body">
+                <p class="review-name">Andjela Todorović</p>
+                <h3>Fiona 是非常优秀的摄影师</h3>
+                <p class="review-copy">她很细心，对细节很敏锐，照片交付也很快，如果你想让情侣或订婚照片像童话故事一样，我会非常推荐她</p>
+                <details class="review-original">
+                  <summary>查看原文</summary>
+                  <p>“Fiona is an excellent photographer!” She is highly attentive, has a great eye for details and delivers photos quickly. I would highly recommend her for couple and engagement shots if you want your story to look like a fairytale.</p>
+                </details>
+              </div>
+            </article>
+            <article class="review-feature">
+              <img class="review-avatar" src="/assets/reviews/second-google-review-avatar.jpg" alt="Aurelie Grihangne">
+              <div class="review-body">
+                <p class="review-name">Aurelie Grihangne</p>
+                <h3>我真的非常推荐 Fiona</h3>
+                <p class="review-copy">我和 Fiona 合作拍摄了内容创作者业务需要的照片，她的专业度让我很惊喜，她能营造很舒服的拍摄氛围，照片质量也很出色，我非常喜欢成片的审美</p>
+                <details class="review-original">
+                  <summary>查看原文</summary>
+                  <p>“I cannot recommend Fiona highly enough!” I had the chance to work with Fiona for a photoshoot for my content creator business and I was amazed by her professionalism. The atmosphere she was able to create and the quality of the photos were remarkable — I was extremely pleased with the aesthetics of the pictures.</p>
+                </details>
+              </div>
+            </article>
+            <article class="review-feature">
+              <img class="review-avatar" src="/assets/reviews/wang-xiaoye-avatar.svg" alt="王晓叶">
+              <div class="review-body">
+                <p class="review-name">王晓叶</p>
+                <h3>一次很舒服的拍摄体验</h3>
+                <p class="review-copy">和 Fiona 拍照是一次很舒服的体验，她很细心，也很有自己的审美，拍摄时会注意很多小细节，比如光线、背景、姿势和整体氛围，即使平时不太习惯面对镜头，也会被她引导得比较放松，最后收到的照片很喜欢，不只是好看，也能感觉到当时的情绪和故事，之后如果有朋友想在南法拍照，我会愿意推荐她！！</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top">
+        <div class="footer-brand-block">
+          <div class="footer-brand-lockup" aria-label="Fiona Tang Studio">
+            <div>
+              <p class="footer-brand-name">Fiona Tang</p>
+              <p class="footer-brand-sub">Studio</p>
+            </div>
+          </div>
+          <h2>南法肖像与亲密影像</h2>
+        </div>
+        <p>这里整理了 Fiona Tang Studio 的服务说明、拍摄流程、常见问题和咨询入口。欢迎从作品、服务或联系页开始了解。</p>
+      </div>
+      <div class="footer-links">
+        <a href="/zh/">首页</a>
+        <a href="/zh/portfolio.html">作品</a>
+        <a href="/zh/about.html">关于</a>
+        <a href="/zh/booking.html">服务与报价</a>
+        <a href="/zh/process.html">流程</a>
+        <a href="/zh/faq.html">常见问题</a>
+        <a href="/zh/contact.html">联系咨询</a>
+        <a href="/zh/privacy.html">隐私政策</a>
+      </div>
+      <div class="social-icons" aria-label="社交媒体和联系方式">
+        <a href="mailto:fionatanggg@gmail.com" aria-label="发送邮件给 Fiona Tang：fionatanggg@gmail.com" title="邮箱">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg>
+        </a>
+        <a href="https://www.instagram.com/fiona.tang.riviera/" target="_blank" rel="noopener" aria-label="Fiona Tang Riviera 的 Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="16.6" cy="7.4" r=".7"/></svg>
+        </a>
+        <a href="https://wa.me/33638503297?text=%E4%BD%A0%E5%A5%BD%20Fiona%EF%BC%8C%E6%88%91%E6%83%B3%E5%92%A8%E8%AF%A2%E6%8B%8D%E6%91%84%E3%80%82" target="_blank" rel="noopener" aria-label="通过 WhatsApp 联系 Fiona Tang：+33 6 38 50 32 97" title="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 18.5 7.3 16A7.2 7.2 0 1 1 10 17.8z"/><path d="M9.4 8.8c.4 2.4 2 4.1 4.3 4.9l1.2-1.1 1.5.8c-.2 1.1-1 1.8-2.2 1.9-3.5-.7-5.8-2.9-6.6-6.4.1-1.2.8-2 1.9-2.2l.8 1.5z"/></svg>
+        </a>
+      </div>
+    </footer>
+    <script src="/script.js"></script>
+  </body>
+</html>
