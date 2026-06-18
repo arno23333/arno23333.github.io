@@ -71,12 +71,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const scrollToAnchorWithHeader = (target) => {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const scrollToAnchorWithHeader = (target, options = {}) => {
     if (!target) return;
     const header = document.querySelector(".site-header");
     const headerHeight = header ? header.getBoundingClientRect().height : 0;
     const offset = Math.ceil(headerHeight + 52);
     const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    const behavior = prefersReducedMotion ? "auto" : options.behavior || "auto";
+    if (behavior === "smooth") {
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior,
+      });
+      return;
+    }
     const root = document.documentElement;
     const previousScrollBehavior = root.style.scrollBehavior;
     root.style.scrollBehavior = "auto";
@@ -99,11 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const faqLayout = document.querySelector(".faq-layout");
   if (faqLayout) {
-    const scrollToFaqHash = (hash) => {
+    const scrollToFaqHash = (hash, options = {}) => {
       const id = hash ? hash.slice(1) : "";
       const target = id ? document.getElementById(id) : null;
       if (!target || !target.classList.contains("faq-group")) return;
-      scrollToAnchorWithHeader(target);
+      scrollToAnchorWithHeader(target, options);
     };
 
     const queueFaqScroll = (hash) => {
@@ -120,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const hash = link.getAttribute("href");
         if (!hash) return;
         history.pushState(null, "", hash);
-        queueFaqScroll(hash);
+        scrollToFaqHash(hash, { behavior: "smooth" });
       });
     });
 

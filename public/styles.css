@@ -18,13 +18,17 @@
   --max: 1180px;
   --font-body: "LXGW WenKai", "KaiTi", "STKaiti", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   --font-heading: "Noto Serif SC", "Songti SC", SimSun, serif;
+  --font-ui: var(--font-body);
+  --font-brand: "Bodoni Moda", "Cormorant Garamond", "Noto Serif", Georgia, "Times New Roman", serif;
+  --font-brand-ui: "Work Sans", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
 }
 
 html:lang(en),
 html:lang(fr),
 html:lang(de) {
-  --font-body: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-heading: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-body: "Cormorant Garamond", "Noto Serif", Georgia, "Times New Roman", serif;
+  --font-heading: "Bodoni Moda", "Cormorant Garamond", "Noto Serif", Georgia, "Times New Roman", serif;
+  --font-ui: "Work Sans", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
 }
 
 * {
@@ -37,7 +41,7 @@ html:lang(de) {
 
 html {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: auto;
   scroll-padding-top: 128px;
 }
@@ -45,7 +49,7 @@ html {
 body {
   margin: 0;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
@@ -120,6 +124,33 @@ h2 {
   white-space: nowrap;
 }
 
+html:lang(en) .page-hero h1,
+html:lang(fr) .page-hero h1,
+html:lang(de) .page-hero h1,
+html:lang(en) .section-heading h2,
+html:lang(fr) .section-heading h2,
+html:lang(de) .section-heading h2,
+html:lang(en) .split h2,
+html:lang(fr) .split h2,
+html:lang(de) .split h2,
+html:lang(en) .cta-band h2,
+html:lang(fr) .cta-band h2,
+html:lang(de) .cta-band h2,
+html:lang(en) .footer-top h2,
+html:lang(fr) .footer-top h2,
+html:lang(de) .footer-top h2,
+html:lang(en) .one-line-heading,
+html:lang(fr) .one-line-heading,
+html:lang(de) .one-line-heading,
+html:lang(en) .keep-one-line,
+html:lang(fr) .keep-one-line,
+html:lang(de) .keep-one-line {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
 h3 {
   font-size: 25px;
 }
@@ -134,6 +165,27 @@ textarea,
 select {
   font: inherit;
   letter-spacing: 0;
+}
+
+.site-header,
+.primary-nav,
+.header-language-switcher,
+.nav-toggle,
+.button,
+.text-link,
+.eyebrow,
+.hero-index,
+.home-trust-line,
+.slot-label,
+.review-name,
+.field label,
+.field-note,
+.date-help,
+.date-error,
+.form-message,
+.footer-brand-sub,
+.footer-links {
+  font-family: var(--font-ui);
 }
 
 .site-header {
@@ -163,7 +215,7 @@ select {
 }
 
 .brand-mark {
-  font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+  font-family: var(--font-brand);
   font-size: 18px;
   line-height: 1.12;
   color: var(--ink);
@@ -171,6 +223,7 @@ select {
 }
 
 .brand-sub {
+  font-family: var(--font-brand-ui);
   font-size: 10px;
   line-height: 1.2;
   color: var(--muted);
@@ -217,6 +270,40 @@ select {
   color: var(--charcoal);
   background: transparent;
   border-color: var(--charcoal);
+}
+
+.header-language-switcher {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  color: var(--muted);
+  background: rgba(251, 248, 241, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.header-language-switcher a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0 7px;
+  color: var(--muted);
+  border-radius: 999px;
+}
+
+.header-language-switcher a:hover,
+.header-language-switcher a.is-active {
+  color: var(--paper-soft);
+  background: var(--charcoal);
 }
 
 .nav-toggle {
@@ -1685,6 +1772,22 @@ select {
   padding-bottom: 60px;
 }
 
+.legal-hero {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+  text-align: center;
+}
+
+.legal-hero .hero-copy {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.legal-hero .lead {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .page-hero .hero-visual,
 .page-hero .hero-visual .slot-inner {
   min-height: 430px;
@@ -2792,7 +2895,7 @@ details p {
 }
 
 .footer-brand-name {
-  font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+  font-family: var(--font-heading);
   font-size: 25px;
   line-height: 1.1;
   color: var(--paper-soft);
@@ -2884,6 +2987,79 @@ details p {
 }
 
 @media (max-width: 1180px) {
+  .site-header {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: center;
+    gap: 7px 14px;
+    min-height: 94px;
+    padding: 12px 78px 10px 18px;
+  }
+
+  .brand {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .header-language-switcher {
+    order: 3;
+  }
+
+  .nav-toggle {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    z-index: 80;
+    display: inline-flex;
+    flex: 0 0 42px;
+    justify-content: center;
+    width: 42px;
+    padding: 0;
+    font-size: 0;
+    gap: 0;
+    background: rgba(246, 241, 232, 0.96);
+    transform: none;
+  }
+
+  .nav-toggle span,
+  .nav-toggle span::before,
+  .nav-toggle span::after {
+    width: 17px;
+  }
+
+  .primary-nav {
+    position: fixed;
+    inset: 94px 0 auto;
+    z-index: 70;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 18px;
+    background: var(--paper-soft);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 30px 50px rgba(29, 31, 26, 0.14);
+    white-space: normal;
+  }
+
+  body.menu-open .primary-nav {
+    display: flex;
+  }
+
+  .primary-nav a {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .primary-nav .nav-cta {
+    justify-content: center;
+    margin-top: 14px;
+    padding: 12px 16px;
+  }
+
   .contact-page .contact-layout.single {
     width: 100%;
     margin-left: 0;
@@ -3104,8 +3280,8 @@ details p {
     width: 100%;
     max-width: 100%;
     overflow: visible;
-    min-height: 68px;
-    padding: 12px 78px 12px 18px;
+    min-height: 94px;
+    padding: 12px 78px 10px 18px;
   }
 
   .nav-toggle {
@@ -3132,7 +3308,7 @@ details p {
 
   .primary-nav {
     position: fixed;
-    inset: 68px 0 auto;
+    inset: 94px 0 auto;
     z-index: 70;
     display: none;
     flex-direction: column;
@@ -3279,6 +3455,12 @@ details p {
     font-size: 12px;
     line-height: 1.35;
     text-shadow: none;
+  }
+
+  html:lang(en) .mobile-hero-trust,
+  html:lang(fr) .mobile-hero-trust,
+  html:lang(de) .mobile-hero-trust {
+    white-space: nowrap;
   }
 
   .mobile-hero-cta {

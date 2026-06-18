@@ -117,3 +117,13 @@ public/
 ## 多语言
 
 当前已建立 `public/zh/`、`public/en/`、`public/fr/`、`public/de/` 四套独立页面，不使用同页按钮切换文字。默认入口为英文 `/en/`，详细见 `LANGUAGE_STRUCTURE.md`。
+
+## 外语字体方向
+
+2026-06-18 起，英文、法语、德语页面采用 KT Merry 方向的安全近似字体系统，不直接复制或热链 KT Merry 的商业字体文件。
+
+- 外语标题：`Bodoni Moda`，对应 KT Merry 大标题中 `Silk Serif Extra Light` 的轻盈高级感。
+- 外语正文与表单文字：`Cormorant Garamond`，保留法语和德语重音字符支持；`Noto Serif` 作为极少数缺字字符的安全回退。
+- 外语导航、按钮、页脚小字等界面文字：`Work Sans`，对应 KT Merry 小号导航中 `Mr Eaves Mod Regular` 的干净感。
+- 中文页面继续使用中文字体体系，不跟随外语字体切换。
+- 页眉品牌字样 `Fiona Tang / Studio` 是例外，四个语言版本必须保持完全一致：品牌名使用 `Bodoni Moda`，`Studio` 小字使用 `Work Sans`，避免切换语言时页眉品牌观感变化。
