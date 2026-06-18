@@ -88,8 +88,9 @@ C:\Users\charl\AppData\Local\Codex\ChromeProfiles\AccountOps
 10. 当前正式中文版页面在 `public/zh/`；共享样式、脚本和素材分别在 `public/styles.css`、`public/script.js`、`public/assets/`。四语言页面共用 `public/assets/`，图片路径优先写 `/assets/...`，不要按语言复制素材目录。修改会上线的内容时，默认改 `public/`。
 11. 当前正式域名为 `https://www.fionatangstudio.com/`，中文入口为 `https://www.fionatangstudio.com/zh/`；GitHub Pages 默认地址 `https://arno23333.github.io/` 只作为托管默认地址和排障入口。
 12. 当前通过 GitHub Pages + GitHub Actions 发布 `public/`；自定义域名由 `public/CNAME` 绑定为 `www.fionatangstudio.com`。
-13. `public/index.html` 和 `public/_redirects` 是主域名入口；当前临时跳转到 `/zh/`。英文版完成后，如要默认进英文，应把这两个文件里的 `/zh/` 改为 `/en/`。
-14. 静态网站没有构建工具，修改后直接检查 HTML、CSS、JS 和浏览器显示。
+13. 用户说“推送”时，默认执行完整发布链路：检查本次相关文件、暂存本次相关改动、创建一次 Git commit 作为本地存档、推送到 GitHub、等待 GitHub Actions 自动部署并检查结果。`git commit` 是存档，`git push` 是把已存档的 commit 同步到 GitHub。
+14. `public/index.html` 和 `public/_redirects` 是主域名入口；当前临时跳转到 `/zh/`。英文版完成后，如要默认进英文，应把这两个文件里的 `/zh/` 改为 `/en/`。
+15. 静态网站没有构建工具，修改后直接检查 HTML、CSS、JS 和浏览器显示。
 
 ## 文件安全
 

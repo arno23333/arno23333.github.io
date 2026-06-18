@@ -23,6 +23,8 @@
 
 以后更新正式网站不是本地保存后自动上线。正确链路是：修改 `public/` 下的正式文件，检查页面，提交到 Git，再推送 `master`，GitHub Actions 成功后线上站点才会更新。
 
+协作口令约定：用户说“推送”时，默认不是只执行 `git push`，而是先检查本次相关文件，再暂存本次相关改动，创建一次 Git commit 作为本地存档，然后推送到 GitHub，最后等待 GitHub Actions 自动部署并检查结果。这里的“存档”对应 `git commit`；`git push` 只是把已经创建的 commit 同步到 GitHub。
+
 ## 正式发布目录
 
 当前通过 GitHub Pages + GitHub Actions 发布：
