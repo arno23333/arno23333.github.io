@@ -10,11 +10,15 @@
 - 2026-06-18：中文版已通过 GitHub Pages 上线到正式域名 `https://www.fionatangstudio.com/zh/`，HTTPS 证书已签发并启用。DNS 托管在 Squarespace，`www` 通过 CNAME 指向 `arno23333.github.io`，根域名通过 4 条 GitHub Pages A 记录指向 GitHub。
 - 2026-06-18：根目录旧页面、旧样式脚本、设计预览稿、临时输出目录和根目录 `assets/` 已清理；正式素材统一保留在 `public/assets/`。
 - 2026-06-18：地点指南草稿已迁入 `public/zh/venue-guides-draft.html`，继续保留 `noindex, nofollow`，不进入公开导航。
+- 2026-06-18：已新增英文、法语、德语目录：`public/en/`、`public/fr/`、`public/de/`。主域名默认入口已切到英文 `/en/`，中文保留在 `/zh/`。
 
 ## 当前线上地址与部署方式
 
+- 正式英文入口：`https://www.fionatangstudio.com/en/`
 - 正式中文入口：`https://www.fionatangstudio.com/zh/`
-- 主域名入口：`https://www.fionatangstudio.com/`，当前进入中文版本 `/zh/`
+- 正式法语入口：`https://www.fionatangstudio.com/fr/`
+- 正式德语入口：`https://www.fionatangstudio.com/de/`
+- 主域名入口：`https://www.fionatangstudio.com/`，当前进入英文版本 `/en/`
 - GitHub Pages 默认地址：`https://arno23333.github.io/`，只作为托管默认地址和排障入口，不作为对外主链接
 - GitHub 仓库：`arno23333/arno23333.github.io`
 - GitHub 分支：`master`
@@ -37,9 +41,12 @@ public/
 
 ```text
 public/
-├─ index.html        主域名入口，当前跳转到 /zh/
+├─ index.html        主域名入口，当前跳转到 /en/
 ├─ _redirects        Netlify 兼容跳转规则；GitHub Pages 当前主要依赖 index.html 入口
 ├─ zh/               中文正式页面
+├─ en/               英文正式页面，当前默认入口
+├─ fr/               法语正式页面
+├─ de/               德语正式页面
 ├─ assets/           四语言共享正式素材
 ├─ styles.css        全站共享样式
 └─ script.js         全站共享交互
@@ -51,7 +58,7 @@ public/
 - 全站样式：改 `public/styles.css`
 - 全站交互：改 `public/script.js`
 - 正式图片：放入或替换 `public/assets/`。中文、英文、法语、德语页面共用这一套素材，不按语言复制图片目录。
-- 主域名默认入口：改 `public/index.html` 和 `public/_redirects`
+- 主域名默认入口：改 `public/index.html` 和 `public/_redirects`；当前默认进入 `/en/`
 
 根目录同名旧页面、旧样式、旧脚本和根目录 `assets/` 已清理。以后若从历史记录恢复这些文件，也不要当成上线版本；正式网站只看 `public/`。
 
@@ -109,4 +116,4 @@ public/
 
 ## 多语言
 
-当前已按正式多语言方向建立 `public/zh/`。后续新增英文、法语、德语时，建议继续在 `public/` 下新增 `/en/`、`/fr/`、`/de/` 四套独立页面，不建议用一个页面按钮切换所有文字。详细见 `LANGUAGE_STRUCTURE.md`。
+当前已建立 `public/zh/`、`public/en/`、`public/fr/`、`public/de/` 四套独立页面，不使用同页按钮切换文字。默认入口为英文 `/en/`，详细见 `LANGUAGE_STRUCTURE.md`。

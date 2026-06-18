@@ -2,6 +2,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   const toggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector("#primary-nav");
+  const pageLang = (document.documentElement.lang || "zh-CN").toLowerCase();
+  const copyByLang = {
+    zh: {
+      locale: "zh-CN",
+      datePlaceholder: "选择日期或日期范围",
+      rangeSeparator: " 至 ",
+      sendingMessage: "正在发送你的咨询...",
+      sendingButton: "发送中...",
+      formError: "表单暂时无法发送。",
+      formSuccess: "谢谢，你的咨询已经发送。Fiona 会在 48 小时内回复。",
+      formFailure: "发送时出现问题。请直接发送邮件到 fionatanggg@gmail.com 联系 Fiona。",
+    },
+    en: {
+      locale: "en-GB",
+      datePlaceholder: "Select a date or date range",
+      rangeSeparator: " to ",
+      sendingMessage: "Sending your inquiry...",
+      sendingButton: "Sending...",
+      formError: "The form cannot be sent right now",
+      formSuccess: "Thank you, your inquiry has been sent, Fiona will reply within 48 hours",
+      formFailure: "Something went wrong, please email fionatanggg@gmail.com to contact Fiona",
+    },
+    fr: {
+      locale: "fr-FR",
+      datePlaceholder: "Choisir une date ou une période",
+      rangeSeparator: " au ",
+      sendingMessage: "Envoi de votre demande...",
+      sendingButton: "Envoi...",
+      formError: "Le formulaire ne peut pas être envoyé pour le moment",
+      formSuccess: "Merci, votre demande a été envoyée, Fiona vous répondra sous 48 heures",
+      formFailure: "Un problème est survenu, écrivez directement à fionatanggg@gmail.com pour contacter Fiona",
+    },
+    de: {
+      locale: "de-DE",
+      datePlaceholder: "Datum oder Zeitraum auswählen",
+      rangeSeparator: " bis ",
+      sendingMessage: "Ihre Anfrage wird gesendet...",
+      sendingButton: "Wird gesendet...",
+      formError: "Das Formular kann gerade nicht gesendet werden",
+      formSuccess: "Danke, Ihre Anfrage wurde gesendet, Fiona antwortet innerhalb von 48 Stunden",
+      formFailure: "Es ist ein Problem aufgetreten, schreiben Sie bitte direkt an fionatanggg@gmail.com",
+    },
+  };
+  const copy = copyByLang[pageLang.slice(0, 2)] || copyByLang.zh;
 
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
@@ -324,14 +368,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = picker.querySelector("[data-calendar-grid]");
     const previous = picker.querySelector("[data-calendar-prev]");
     const next = picker.querySelector("[data-calendar-next]");
-    const placeholder = trigger.dataset.placeholder || "选择日期或日期范围";
+    const placeholder = trigger.dataset.placeholder || copy.datePlaceholder;
     const today = startOfDay(new Date());
     let viewDate = new Date(today.getFullYear(), today.getMonth(), 1);
     let rangeStart = null;
     let rangeEnd = null;
     let previewEnd = null;
 
-    const formatDate = (date) => date.toLocaleDateString("zh-CN", {
+    const formatDate = (date) => date.toLocaleDateString(copy.locale, {
       year: "numeric",
       month: "short",
       day: "numeric",
@@ -357,8 +401,8 @@ document.addEventListener("DOMContentLoaded", () => {
         hiddenInput.value = formatIso(rangeStart);
         trigger.textContent = formatDate(rangeStart);
       } else {
-        hiddenInput.value = `${formatIso(rangeStart)} 至 ${formatIso(finalEnd)}`;
-        trigger.textContent = `${formatDate(rangeStart)} 至 ${formatDate(finalEnd)}`;
+        hiddenInput.value = `${formatIso(rangeStart)}${copy.rangeSeparator}${formatIso(finalEnd)}`;
+        trigger.textContent = `${formatDate(rangeStart)}${copy.rangeSeparator}${formatDate(finalEnd)}`;
       }
       trigger.classList.add("has-value");
       if (error) error.hidden = true;
@@ -405,7 +449,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const render = () => {
-      label.textContent = viewDate.toLocaleDateString("zh-CN", {
+      label.textContent = viewDate.toLocaleDateString(copy.locale, {
         month: "long",
         year: "numeric",
       });
@@ -554,11 +598,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (message) {
         message.classList.remove("is-visible", "is-error");
-        message.textContent = "正在发送你的咨询...";
+        message.textContent = copy.sendingMessage;
       }
       if (submitButton) {
         submitButton.disabled = true;
-        submitButton.textContent = "发送中...";
+        submitButton.textContent = copy.sendingButton;
       }
 
       try {
@@ -572,7 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await response.json().catch(() => ({}));
 
         if (!response.ok || result.success === false) {
-          throw new Error(result.message || "表单暂时无法发送。");
+          throw new Error(result.message || copy.formError);
         }
 
         form.reset();
@@ -584,13 +628,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         if (message) {
-          message.textContent = "谢谢，你的咨询已经发送。Fiona 会在 48 小时内回复。";
+          message.textContent = copy.formSuccess;
           message.classList.add("is-visible");
           message.focus();
         }
       } catch (error) {
         if (message) {
-          message.textContent = "发送时出现问题。请直接发送邮件到 fionatanggg@gmail.com 联系 Fiona。";
+          message.textContent = copy.formFailure;
           message.classList.add("is-visible", "is-error");
           message.focus();
         }

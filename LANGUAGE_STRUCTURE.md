@@ -4,7 +4,7 @@
 
 2026-06-09 更新：正式发布源已切到 `public/`。当前中文版正式页面在 `public/zh/`，共享资源在 `public/assets/`、`public/styles.css`、`public/script.js`。根目录同名 HTML/CSS/JS 不再作为上线源，并已在 2026-06-18 清理。
 
-2026-06-18 更新：正式域名已上线为 `https://www.fionatangstudio.com/`，当前默认进入中文版本 `/zh/`。后续新增英文、法语、德语页面时，应使用同一正式域名下的 `/en/`、`/fr/`、`/de/`。
+2026-06-18 更新：正式域名已上线为 `https://www.fionatangstudio.com/`。英文、法语、德语页面已建立，当前主域名默认进入英文版本 `/en/`，中文保留在 `/zh/`。
 
 2026-06-18 更新：四语言页面共用 `public/assets/`，不要为 `/zh/`、`/en/`、`/fr/`、`/de/` 分别复制图片。页面中的图片路径优先使用 `/assets/...` 这种站点根路径。
 
@@ -29,9 +29,9 @@ public/fr/contact.html
 public/de/contact.html
 ```
 
-当前 `public/zh/` 已经是中文版发布目录。后续做外语版时，从 `public/zh/` 复制结构到 `public/en/`、`public/fr/`、`public/de/`，再逐页翻译和本地化。不要从根目录旧稿或历史恢复文件复制新语言版本。
+当前 `public/zh/`、`public/en/`、`public/fr/`、`public/de/` 已经建立。后续维护外语版时，以 `public/zh/` 的结构为参考，同步检查英文、法语、德语页面，不要从根目录旧稿或历史恢复文件复制新语言版本。
 
-主域名入口由 `public/index.html` 和 `public/_redirects` 控制。当前默认跳转到 `/zh/`；英文版完成并确认要作为默认入口后，把这两个文件里的 `/zh/` 改为 `/en/`。
+主域名入口由 `public/index.html` 和 `public/_redirects` 控制。当前默认跳转到 `/en/`；如果以后需要改默认语言，必须同步修改这两个文件。
 
 共享图片、头像、评价素材和地点指南素材都放在：
 
