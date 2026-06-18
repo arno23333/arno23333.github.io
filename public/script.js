@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   const toggle = document.querySelector("[data-nav-toggle]");
   const nav = document.querySelector("#primary-nav");
-  const pageLang = (document.documentElement.lang || "zh-CN").toLowerCase();
+  const pathLang = window.location.pathname.split("/").filter(Boolean)[0] || "";
+  const pageLang = (document.documentElement.lang || pathLang || "zh-CN").toLowerCase();
   const copyByLang = {
     zh: {
       locale: "zh-CN",
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       formFailure: "Es ist ein Problem aufgetreten, schreiben Sie bitte direkt an fionatanggg@gmail.com",
     },
   };
-  const copy = copyByLang[pageLang.slice(0, 2)] || copyByLang.zh;
+  const copy = copyByLang[pathLang] || copyByLang[pageLang.slice(0, 2)] || copyByLang.zh;
 
   if (toggle && nav) {
     toggle.addEventListener("click", () => {
