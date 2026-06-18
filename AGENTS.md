@@ -70,7 +70,7 @@ C:\Users\charl\AppData\Local\Codex\ChromeProfiles\AccountOps
 
 用户不需要长期保持这个 Chrome 开着。需要平台检索、截图、收藏量/互动热度核验时再打开；任务结束后如果不再需要平台操作，可以关闭 Chrome，关闭后本机调试口也会关闭。
 
-如果当前 Codex 环境没有可直接控制 Chrome 的工具、`127.0.0.1:9222` 无法连接、平台触发登录校验，必须明确告知限制，并让用户只处理登录、授权、验证码、发帖确认等敏感步骤。
+如果当前 Codex 环境没有可直接控制 Chrome 的工具、`127.0.0.1:9222` 无法连接、平台触发登录校验，必须明确说明当前工具状态和无法自动完成的步骤。
 
 禁止把 cookies、验证码、密码、账号密钥或其他登录凭据写入项目文件、记忆或规则文件。
 
@@ -82,14 +82,20 @@ C:\Users\charl\AppData\Local\Codex\ChromeProfiles\AccountOps
 4. Booking、FAQ、价格、订金、交付周期、加时费、异地费等未确认内容，必须标注待确认，不编造。
 5. 没有真实客户评价前，不编造 Google 评价、客户原话或不存在的评分。
 6. `venue-guides-draft.html` 当前是草稿页，未定稿前保留 `noindex`；上线前如未完成，应从导航移除入口。
-7. 未来四语言版本优先按 `/zh/`、`/en/`、`/fr/`、`/de/` 独立页面组织，不默认做同页按钮切换所有文字。
-8. 静态网站没有构建工具，修改后直接检查 HTML、CSS、JS 和浏览器显示。
+7. `public/zh/services.html` 当前暂时隐藏，保留文件与内容，但不放入页头、页脚或首页 CTA，并保留 `noindex`；除非用户明确要求重新公开，不要把它加回导航。
+8. 未来四语言版本优先按 `/zh/`、`/en/`、`/fr/`、`/de/` 独立页面组织，不默认做同页按钮切换所有文字。
+9. 自 2026-06-09 起，正式发布源文件在 `public/`。根目录同名 HTML/CSS/JS 不再作为线上发布源，旧稿已于 2026-06-18 清理。
+10. 当前正式中文版页面在 `public/zh/`；共享样式、脚本和素材分别在 `public/styles.css`、`public/script.js`、`public/assets/`。四语言页面共用 `public/assets/`，图片路径优先写 `/assets/...`，不要按语言复制素材目录。修改会上线的内容时，默认改 `public/`。
+11. 当前正式域名为 `https://www.fionatangstudio.com/`，中文入口为 `https://www.fionatangstudio.com/zh/`；GitHub Pages 默认地址 `https://arno23333.github.io/` 只作为托管默认地址和排障入口。
+12. 当前通过 GitHub Pages + GitHub Actions 发布 `public/`；自定义域名由 `public/CNAME` 绑定为 `www.fionatangstudio.com`。
+13. `public/index.html` 和 `public/_redirects` 是主域名入口；当前临时跳转到 `/zh/`。英文版完成后，如要默认进英文，应把这两个文件里的 `/zh/` 改为 `/en/`。
+14. 静态网站没有构建工具，修改后直接检查 HTML、CSS、JS 和浏览器显示。
 
 ## 文件安全
 
 - 不删除真实作品、参考图、评价材料、已有页面。
 - 不覆盖现有页面时应确认修改范围。
-- 修改样式和脚本时，检查手机菜单、Portfolio 筛选、Contact 表单状态是否仍可用。
+- 修改样式和脚本时，检查手机菜单、Portfolio 筛选、Contact 表单状态是否仍可用；涉及页面布局、表单、导航、Booking、Portfolio 或共享 CSS 时，至少用真实浏览器检查 320px、390px、1440px 三档宽度。
 
 ## 输出前自检
 
@@ -107,15 +113,16 @@ C:\Users\charl\AppData\Local\Codex\ChromeProfiles\AccountOps
 2. 涉及多语言、URL、SEO、语言目录规划时，额外读取 `LANGUAGE_STRUCTURE.md`。
 3. 涉及竞品、价格表达、服务范围、摄影师定位时，额外读取 `南法本地摄影师竞品资料库.md`。
 4. 涉及评价、review、客户反馈、信任背书时，额外读取 `Google评价参考与实现.md`。
-5. 涉及样式、交互、导航、表单、筛选功能时，读取目标 HTML 文件，并检查 `styles.css`、`script.js` 中相关片段。
+5. 涉及样式、交互、导航、表单、筛选功能时，正式发布内容默认读取 `public/zh/` 下目标 HTML 文件，并检查 `public/styles.css`、`public/script.js` 中相关片段。
 
 ## 修改前工作流
 
 1. 先确认本次任务影响哪些页面、样式和脚本文件。
-2. 修改目标页面前，先读取页面现状和相关共用区域，包括页头导航、页脚、CTA、表单、图片路径。
-3. 不顺手重构无关页面、无关样式和无关脚本。
-4. 如果发现页面现状与项目文档冲突，先以项目文档为约束，并在输出中说明冲突点。
-5. 中文 Markdown 文件默认按 UTF-8 读取和保存，避免乱码。
+2. 如果任务涉及正式上线内容，目标文件默认位于 `public/`：中文页面在 `public/zh/`，共享样式在 `public/styles.css`，共享脚本在 `public/script.js`，素材在 `public/assets/`。
+3. 修改目标页面前，先读取页面现状和相关共用区域，包括页头导航、页脚、CTA、表单、图片路径。
+4. 不顺手重构无关页面、无关样式和无关脚本。
+5. 如果发现页面现状与项目文档冲突，先以项目文档为约束，并在输出中说明冲突点。
+6. 中文 Markdown 文件默认按 UTF-8 读取和保存，避免乱码。
 
 ## 修改后 QA 清单
 
@@ -123,12 +130,13 @@ C:\Users\charl\AppData\Local\Codex\ChromeProfiles\AccountOps
 
 1. 桌面端首屏是否清楚表达服务类型、审美和咨询入口。
 2. 手机端是否存在文字溢出、遮挡、按钮过小、导航不可用问题。
-3. 手机菜单是否能正常打开、关闭和跳转。
-4. Portfolio 筛选是否仍可用。
-5. Contact 表单状态是否仍可用，包括提交中、成功、失败或提示文案。
-6. Booking、FAQ、价格、订金、交付周期、加时费、异地费等内容是否仍保留待确认标记。
-7. `venue-guides-draft.html` 是否保留 `noindex`，草稿页入口是否符合当前上线状态。
-8. 是否误新增了未确认的价格、评价、服务承诺、作品事实。
+3. 至少检查 320px、390px、1440px 三档真实浏览器宽度；重点看导航展开是否遮挡、Contact 日期选择器是否超出底部、Booking accordion summary 是否挤压、Portfolio 筛选按钮是否可点击。
+4. 手机菜单是否能正常打开、关闭和跳转。
+5. Portfolio 筛选是否仍可用。
+6. Contact 表单状态是否仍可用，包括提交中、成功、失败或提示文案。
+7. Booking、FAQ、价格、订金、交付周期、加时费、异地费等内容是否仍保留待确认标记。
+8. `venue-guides-draft.html` 是否保留 `noindex`，草稿页入口是否符合当前上线状态。
+9. 是否误新增了未确认的价格、评价、服务承诺、作品事实。
 
 ## 事实来源简要提醒
 
@@ -136,8 +144,8 @@ C:\Users\charl\AppData\Local\Codex\ChromeProfiles\AccountOps
 
 ## 静态页面一致性与文件安全
 
-1. 修改页头导航、页脚、主 CTA、Contact 链接时，检查主要页面是否一致：`index.html`、`services.html`、`portfolio.html`、`about.html`、`booking.html`、`process.html`、`faq.html`、`contact.html`。
-2. 如果需要隐藏或移除 `venue-guides-draft.html` 入口，不能只修改首页，应同步检查所有主要页面导航。
+1. 修改页头导航、页脚、主 CTA、Contact 链接时，检查 `public/zh/` 下主要公开页面是否一致：`index.html`、`portfolio.html`、`about.html`、`booking.html`、`process.html`、`faq.html`、`contact.html`、`privacy.html`。`services.html` 当前是隐藏页，只检查它是否保留 `noindex` 且没有被重新放回公开入口。
+2. 如果未来把 `venue-guides-draft.html` 放入 `public/` 或正式导航，未定稿前必须保留 `noindex`；如果需要隐藏或移除入口，不能只修改首页，应同步检查所有主要页面导航。
 3. 不删除真实作品、参考图、评价材料、已有页面和用户提供的素材。
-4. `assets/`、`小哲本人正脸照/`、`小哲本人生成图/`、`摄影师肖像模板/` 默认视为素材目录，除非用户明确要求，不做删除、覆盖或批量整理。
+4. `public/assets/`、`小哲本人正脸照/`、`小哲本人生成图/`、`摄影师肖像模板/` 默认视为素材目录，除非用户明确要求，不做删除、覆盖或批量整理。根目录 `assets/` 已清理，不再作为正式素材来源。
 5. 修改共享样式或脚本时，优先保持现有命名和结构，避免为局部问题引入大范围重构。
