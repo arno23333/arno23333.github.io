@@ -17,7 +17,7 @@
 3. `项目错题集.md`
 4. `LANGUAGE_STRUCTURE.md`，仅在涉及多语言或 SEO 时读取。
 5. `南法本地摄影师竞品资料库.md`，仅在涉及竞品、价格、服务范围、定位时读取。
-6. `Google评价参考与实现.md`，仅在涉及评价、review、信任背书时读取。
+6. 涉及评价、review、信任背书时，读取 `README_网站维护.md` 中的 Google 评价模块维护标准、`项目错题集.md` 的 Google 评价复用路径，并查看 `public/zh/index.html`、`public/zh/contact.html`、`public/styles.css` 中当前评价模块结构。
 
 ## 社交平台调研与平台覆盖规则
 
@@ -113,7 +113,7 @@ C:\Users\charl\AppData\Local\Codex\ChromeProfiles\AccountOps
 1. 涉及页面结构、转化路径、服务表达、整体文案时，读取 `小哲摄影师网站建设基石.md`、`README_网站维护.md`、`项目错题集.md`。
 2. 涉及多语言、URL、SEO、语言目录规划时，额外读取 `LANGUAGE_STRUCTURE.md`。
 3. 涉及竞品、价格表达、服务范围、摄影师定位时，额外读取 `南法本地摄影师竞品资料库.md`。
-4. 涉及评价、review、客户反馈、信任背书时，额外读取 `Google评价参考与实现.md`。
+4. 涉及评价、review、客户反馈、信任背书时，额外读取 `README_网站维护.md` 的 Google 评价模块维护标准、`项目错题集.md` 的 Google 评价复用路径，并查看 `public/zh/index.html`、`public/zh/contact.html`、`public/styles.css` 中当前评价模块结构。
 5. 涉及样式、交互、导航、表单、筛选功能时，正式发布内容默认读取 `public/zh/` 下目标 HTML 文件，并检查 `public/styles.css`、`public/script.js` 中相关片段。
 
 ## 修改前工作流

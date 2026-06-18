@@ -76,6 +76,26 @@ public/
 - 修改页面、样式或脚本后，至少用真实浏览器检查 320px、390px、1440px 三档宽度。
 - 三档检查重点：手机导航展开是否遮挡、Contact 日期选择器是否超出底部、Booking accordion summary 是否挤压、Portfolio 筛选按钮是否可点击。
 
+## Google 评价模块维护标准
+
+当前 `public/zh/index.html` 和 `public/zh/contact.html` 的评价模块样式与结构，基本就是用户认可的目标方向。后续新增或调整 Google 评价时，优先沿用现有实现，不重新设计成大卡片、轮播、评分墙或营销感很强的 testimonial 区块。
+
+当前结构标准：
+
+- 外层使用 `reviews-showcase`；Contact 页可加 `contact-reviews`。
+- 每条评价使用 `review-feature`，左侧 52px 圆形头像，右侧是客户名、短标题、中文摘要和可选原文。
+- 客户名使用 `review-name`，标题用简短一句话概括评价重点，不写夸张营销语。
+- 中文 `review-copy` 应保留客户真实意思，但可以压缩成适合网页阅读的自然中文摘要。
+- 有英文或外语原文时，用 `details.review-original` + `summary` 的“查看原文”折叠，不把长原文直接铺满页面。
+- 头像统一放在 `public/assets/reviews/`，路径用 `/assets/reviews/...`，不要放进各语言目录复制多份。
+- 首页和 Contact 页当前同步展示同一组评价；新增、删除或改写评价时，默认两页一起检查。
+
+事实边界：
+
+- 只使用真实 Google 评价、客户真实反馈或用户确认过的文字。
+- 不编造评分、客户原话、客户头像、Google 星级或不存在的客户身份。
+- 如果只能看到 Google 翻译文本，优先找原文；找不到原文时，必须标注这是基于可见文本整理，不当成客户英文原文。
+
 ## 后续最需要替换的内容
 
 1. 首页和 Portfolio 的“待补真实作品”占位块。
