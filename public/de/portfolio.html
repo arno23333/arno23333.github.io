@@ -53,7 +53,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=LXGW+WenKai&family=Noto+Serif:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=20260619-final">
+    <link rel="stylesheet" href="/styles.css?v=20260620-touch">
   </head>
   <body>
     <header class="site-header">
@@ -73,7 +73,7 @@
         <a href="/de/faq.html">FAQ</a>
         <a class="nav-cta" href="/de/contact.html">Verfügbarkeit anfragen</a>
       </nav>
-      <nav class="header-language-switcher" aria-label="Language selector">
+      <nav class="header-language-switcher" aria-label="Sprachauswahl">
         <a href="/zh/portfolio.html" hreflang="zh" lang="zh-CN">ZH</a>
         <a href="/en/portfolio.html" hreflang="en" lang="en">EN</a>
         <a href="/fr/portfolio.html" hreflang="fr" lang="fr">FR</a>
@@ -85,9 +85,9 @@
       <section class="hero page-hero">
         <div class="hero-copy">
           <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/de/">Startseite</a><span aria-hidden="true">/</span><span>Portfolio</span></nav>
-          <p class="eyebrow">Ausgewählte Werke</p>
+          <p class="eyebrow">Ausgewählte Bilder</p>
           <h1>Liebe, Licht und Erinnerung an Südfrankreich</h1>
-          <p class="lead">Eine Auswahl von Fionas Arbeiten rund um Hochzeiten, Elopements, Paare und Porträts, natürlich, intim, ruhig und auf echte Emotionen konzentriert</p>
+          <p class="lead">Eine Auswahl von Fionas Arbeiten rund um Hochzeiten, Elopements, Paare und Porträts. Natürliches Licht, Nähe und das Gefühl Südfrankreichs prägen die Auswahl.</p>
         </div>
         <div class="hero-visual image-frame">
           <picture>
@@ -100,20 +100,20 @@
 
       <section class="section portfolio-editorial-section">
         <div class="container portfolio-editorial-container">
-          <div class="portfolio-control-row">
+          <div class="portfolio-control-row" id="portfolio-filters" data-portfolio-filter-anchor>
             <div class="portfolio-filter-panel">
               <div class="section-heading portfolio-action-heading">
                 <div>
-                  <p class="eyebrow">Bilder filtern</p>
-                  <h2>Nach Typ durchsuchen</h2>
+                  <p class="eyebrow">Portfolio nach Kategorie</p>
+                  <h2>Nach Shooting-Art filtern</h2>
                 </div>
               </div>
-              <div class="filter-bar" aria-label="Arbeitsscreening">
-                <button class="filter-button is-active" type="button" data-filter="all">alle</button>
-                <button class="filter-button" id="wedding-elopement" type="button" data-filter="wedding-elopement">Hochzeit/Elopement</button>
+              <div class="filter-bar" aria-label="Portfolio-Filter">
+                <button class="filter-button is-active" type="button" data-filter="all">Alle</button>
+                <button class="filter-button" id="wedding-elopement" type="button" data-filter="wedding-elopement">Hochzeit / Elopement</button>
                 <button class="filter-button" id="couple" type="button" data-filter="couple">Paar</button>
                 <button class="filter-button" id="portrait" type="button" data-filter="portrait">Porträt</button>
-                <button class="filter-button" id="detail" type="button" data-filter="detail">Veranstaltungsort/Details</button>
+                <button class="filter-button" id="detail" type="button" data-filter="detail">Orte / Details</button>
               </div>
             </div>
             <div class="portfolio-quick-cta">
@@ -724,12 +724,12 @@
       <section class="section band">
         <div class="container two-col">
           <article class="info-panel">
-            <h3>Beim Betrachten der Arbeiten können Sie zuerst fühlen</h3>
-            <p>Mögen Sie dieses natürliche Licht, die nicht zu stark inszenierten Bilder und eine leicht filmische Stimmung? Fiona achtet weniger auf perfekte Posen als auf echte Nähe und Emotion im Moment</p>
+            <h3>Worauf Sie zuerst achten können</h3>
+            <p>Achten Sie auf Licht, Nähe und Tempo. Fionas Arbeit ist ruhig geführt, aber nicht auf steife Posen aufgebaut.</p>
           </article>
           <article class="info-panel">
             <h3>Wenn Sie sich über den Typ noch nicht sicher sind</h3>
-            <p>Beginnen Sie mit der Atmosphäre, die Ihnen gefällt: ruhiger, romantischer, mehr Reisegefühl oder näher am Alltag, und senden Sie diese Richtung bei Ihrer Anfrage</p>
+            <p>Beginnen Sie mit der Atmosphäre, die Ihnen gefällt: ruhig, romantisch, reisebezogen oder näher am Alltag. Senden Sie diese Richtung gern mit Ihrer Anfrage.</p>
           </article>
         </div>
       </section>
@@ -738,14 +738,19 @@
         <div class="container">
           <div class="cta-band">
             <div>
-              <p class="eyebrow">Gefällt Ihnen diese Richtung?</p>
-              <h2>Gefällt Ihnen diese Stimmung? Schreiben Sie mir zuerst</h2>
-              <p>Wenn Sie eine Hochzeit, ein Elopement oder eine Paar-Session planen, senden Sie Datum und Ort, Fiona prüft, ob der Plan passt</p>
+              <p class="eyebrow">Gefällt Ihnen dieser Bildstil?</p>
+              <h2>Senden Sie Datum und Ort</h2>
+              <p>Wenn Sie eine Hochzeit, ein Elopement oder ein Paarshooting planen, senden Sie zuerst Datum und Ort. Fiona prüft die Verfügbarkeit und sagt Ihnen, was zu Ihrem Plan passt.</p>
             </div>
             <a class="button" href="/de/contact.html">Verfügbarkeit anfragen</a>
           </div>
         </div>
       </section>
+
+      <nav class="portfolio-floating-actions" data-portfolio-floating-actions aria-label="Portfolio-Schnellaktionen">
+        <a class="portfolio-floating-action portfolio-floating-action-top" href="#portfolio-filters" data-scroll-to-filters aria-label="Zurück zu den Portfolio-Filtern">Filter</a>
+        <a class="portfolio-floating-action portfolio-floating-action-inquire" href="/de/contact.html" aria-label="Verfügbarkeit anfragen">Anfrage</a>
+      </nav>
     </main>
 
     <footer class="site-footer">
@@ -787,6 +792,6 @@
         </a>
       </div>
     </footer>
-    <script src="/script.js?v=20260619-final"></script>
+    <script src="/script.js?v=20260620-touch"></script>
   </body>
 </html>
