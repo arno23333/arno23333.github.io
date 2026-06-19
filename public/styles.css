@@ -806,6 +806,14 @@ select {
   box-shadow: var(--shadow);
 }
 
+.image-frame picture,
+.photo-card picture,
+.image-tile picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .image-frame img,
 .photo-card img,
 .image-tile img {
@@ -822,6 +830,9 @@ select {
 }
 
 .hero-visual.image-frame img,
+.hero-visual.image-frame picture,
+.photo-stream .photo-card picture,
+.portfolio-grid .image-tile picture,
 .photo-stream .photo-card img,
 .portfolio-grid .image-tile img {
   position: absolute;
@@ -2090,6 +2101,11 @@ select {
   background: var(--sage-dark);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+
+.stagger-photo picture {
+  display: block;
+  width: 100%;
 }
 
 .stagger-photo img {
