@@ -48,13 +48,25 @@
           <section class="contact-visual-carousel" aria-label="Vorschau der Aufnahmeatmosphäre" data-hero-carousel>
             <div class="contact-visual-track">
               <figure class="contact-visual-slide is-active" data-carousel-slide>
-                <img src="/assets/work/website/56-dscf7516.jpg" alt="Porträt im blauen Kleid vor dem Dach in Südfrankreich">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/56-dscf7516-720.avif 720w, /assets/responsive/56-dscf7516-1200.avif 1200w, /assets/responsive/56-dscf7516-1800.avif 1800w, /assets/responsive/56-dscf7516-2200.avif 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/56-dscf7516-720.webp 720w, /assets/responsive/56-dscf7516-1200.webp 1200w, /assets/responsive/56-dscf7516-1800.webp 1800w, /assets/responsive/56-dscf7516-2200.webp 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/56-dscf7516.jpg" alt="Porträt im blauen Kleid vor dem Dach in Südfrankreich" width="2200" height="1467" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
               <figure class="contact-visual-slide" data-carousel-slide>
-                <img src="/assets/work/website/82-26.jpg" alt="Kleiner Tisch und Stühle auf dem Rasen mit Blick auf die Berge">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/82-26-720.avif 720w, /assets/responsive/82-26-1200.avif 1200w, /assets/responsive/82-26-1467.avif 1467w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/82-26-720.webp 720w, /assets/responsive/82-26-1200.webp 1200w, /assets/responsive/82-26-1467.webp 1467w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/82-26.jpg" alt="Kleiner Tisch und Stühle auf dem Rasen mit Blick auf die Berge" width="1467" height="2200" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
               <figure class="contact-visual-slide" data-carousel-slide>
-                <img src="/assets/work/website/01-9k6a0273.jpg" alt="Hochzeitspaar verlässt das Rathaus">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/14-dscf0393-720.avif 720w, /assets/responsive/14-dscf0393-1200.avif 1200w, /assets/responsive/14-dscf0393-1800.avif 1800w, /assets/responsive/14-dscf0393-2200.avif 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/14-dscf0393-720.webp 720w, /assets/responsive/14-dscf0393-1200.webp 1200w, /assets/responsive/14-dscf0393-1800.webp 1800w, /assets/responsive/14-dscf0393-2200.webp 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/14-dscf0393.jpg" alt="Brautstrauß und Detail des Hochzeitskleids" width="2200" height="1466" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
             </div>
             <div class="contact-visual-dots" aria-label="Wechseln Sie zum Aufnehmen von Stimmungsfotos">
@@ -106,13 +118,14 @@
                     <span>So</span>
                   </div>
                   <div class="date-grid" data-calendar-grid role="grid" aria-label="Gewünschtes Datum auswählen"></div>
-                  <p class="date-help">Klicken Sie zuerst auf das Startdatum, dann auf das Enddatum, Für eine eintägige Session wählen Sie dasselbe Datum zweimal</p>
+                  <p class="date-help" data-date-help>Wählen Sie das Session-Datum; fügen Sie nur bei Bedarf ein Enddatum hinzu.</p>
                 </div>
+                <button class="date-range-toggle" type="button" data-date-range-toggle hidden>Enddatum hinzufügen</button>
               </div>
               <div class="field line-field full">
                 <label for="location">Ort *</label>
                 <input id="location" name="location" placeholder="Ort * (Nizza, Monaco, Provence)" required>
-                <p class="field-note">Reguläre Session-Orte sind Nizza und nahe Côte d'Azur Orte; Provence, Saint-Tropez oder andere französische Städte werden je nach Datum, Anreise und Plan separat bestätigt</p>
+                <p class="field-note">Reguläre Session-Orte sind Nizza und nahe Côte d’Azur Orte; Provence, Saint-Tropez oder andere französische Städte werden je nach Datum, Anreise und Plan separat bestätigt</p>
               </div>
               <div class="field line-field full">
                 <label for="travel-origin">Von wo reisen Sie an?</label>
@@ -141,29 +154,27 @@
                 <select id="budget-range" name="budget-range">
                   <option value="" selected>Ungefährer Budgetbereich</option>
                   <option value="Noch nicht sicher">Noch nicht sicher</option>
-                  <option value="Etwa 300-500 EUR">Etwa 300-500 EUR</option>
-                  <option value="500-800 EUR">500-800 EUR</option>
-                  <option value="800-1200 EUR">800-1200 EUR</option>
-                  <option value="1200 EUR und mehr">1200 EUR und mehr</option>
+                  <option value="Etwa 300-500 €">Etwa 300-500 €</option>
+                  <option value="500-800 €">500-800 €</option>
+                  <option value="800-1.200 €">800-1.200 €</option>
+                  <option value="1.200 € und mehr">1.200 € und mehr</option>
                   <option value="Hochzeits- oder individuelles Angebot">Hochzeits- oder individuelles Angebot</option>
                 </select>
               </div>
               <div class="field line-field full select-field">
-                <label for="heard-from">Woher kennst du mich?</label>
+                <label for="heard-from">Wie haben Sie mich gefunden?</label>
                 <select id="heard-from" name="heard-from" data-other-select aria-controls="heard-from-other-field">
-                  <option value="" selected>Woher kennst du mich?</option>
+                  <option value="" selected>Wie haben Sie mich gefunden?</option>
                   <option value="Google">Google</option>
                   <option value="Instagram">Instagram</option>
-                  <option value="Xiaohongshu">Xiaohongshu</option>
                   <option value="TikTok">TikTok</option>
-                  <option value="Douyin">Douyin</option>
                   <option value="Von Freunden empfohlen">Von Freunden empfohlen</option>
                   <option value="Hochzeitsplaner oder andere Anbieter">Hochzeitsplaner oder andere Anbieter</option>
                   <option value="Other">Andere</option>
                 </select>
               </div>
               <div class="field line-field full other-detail" id="heard-from-other-field" hidden>
-                <label for="heard-from-other">Wo hast du mich gesehen? *</label>
+                <label for="heard-from-other">Wo haben Sie mich gefunden? *</label>
                 <input id="heard-from-other" name="heard-from-other" placeholder="Wo haben Sie mich gefunden? *" disabled>
               </div>
               <div class="field line-field full">
@@ -174,19 +185,6 @@
             <button class="button" type="submit">Anfrage senden</button>
             <p class="form-message" data-form-message tabindex="-1" role="status" aria-live="polite">Vielen Dank, Ihre Anfrage wurde gesendet, Fiona wird innerhalb von 48 Stunden antworten</p>
           </form>
-        </div>
-      </section>
-
-      <section class="section band contact-response-section">
-        <div class="container">
-          <div class="cta-band">
-            <div>
-              <p class="eyebrow">Beratungstipps</p>
-              <h2>Eine klare Anfrage bekommt schneller eine Antwort</h2>
-              <p>Nennen Sie Datum, Ort, Anreiseort, Art der Session, Budgetrahmen und die Bilder, die Ihnen am wichtigsten sind, So kann Fiona besser einschätzen, was passt und was kalkuliert werden muss</p>
-            </div>
-            <a class="button" href="/de/faq.html">Lesen Sie zuerst die häufig gestellten Fragen</a>
-          </div>
         </div>
       </section>
 

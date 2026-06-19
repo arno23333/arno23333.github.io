@@ -48,13 +48,25 @@
           <section class="contact-visual-carousel" aria-label="拍摄氛围预览" data-hero-carousel>
             <div class="contact-visual-track">
               <figure class="contact-visual-slide is-active" data-carousel-slide>
-                <img src="/assets/work/website/56-dscf7516.jpg" alt="南法屋顶前的蓝裙肖像">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/56-dscf7516-720.avif 720w, /assets/responsive/56-dscf7516-1200.avif 1200w, /assets/responsive/56-dscf7516-1800.avif 1800w, /assets/responsive/56-dscf7516-2200.avif 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/56-dscf7516-720.webp 720w, /assets/responsive/56-dscf7516-1200.webp 1200w, /assets/responsive/56-dscf7516-1800.webp 1800w, /assets/responsive/56-dscf7516-2200.webp 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/56-dscf7516.jpg" alt="南法屋顶前的蓝裙肖像" width="2200" height="1467" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
               <figure class="contact-visual-slide" data-carousel-slide>
-                <img src="/assets/work/website/82-26.jpg" alt="山景草坪上的小桌与椅子">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/82-26-720.avif 720w, /assets/responsive/82-26-1200.avif 1200w, /assets/responsive/82-26-1467.avif 1467w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/82-26-720.webp 720w, /assets/responsive/82-26-1200.webp 1200w, /assets/responsive/82-26-1467.webp 1467w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/82-26.jpg" alt="山景草坪上的小桌与椅子" width="1467" height="2200" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
               <figure class="contact-visual-slide" data-carousel-slide>
-                <img src="/assets/work/website/01-9k6a0273.jpg" alt="从市政厅走出的婚礼新人">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/14-dscf0393-720.avif 720w, /assets/responsive/14-dscf0393-1200.avif 1200w, /assets/responsive/14-dscf0393-1800.avif 1800w, /assets/responsive/14-dscf0393-2200.avif 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/14-dscf0393-720.webp 720w, /assets/responsive/14-dscf0393-1200.webp 1200w, /assets/responsive/14-dscf0393-1800.webp 1800w, /assets/responsive/14-dscf0393-2200.webp 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/14-dscf0393.jpg" alt="新娘手捧花与婚纱细节" width="2200" height="1466" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
             </div>
             <div class="contact-visual-dots" aria-label="切换拍摄氛围照片">
@@ -106,8 +118,9 @@
                     <span>日</span>
                   </div>
                   <div class="date-grid" data-calendar-grid role="grid" aria-label="选择希望拍摄的日期"></div>
-                  <p class="date-help">先点击开始日期，再点击结束日期。只拍一天的话，可以选择同一天作为开始和结束。</p>
+                  <p class="date-help" data-date-help>选择拍摄日期；如果是多日拍摄，可以再添加结束日期。</p>
                 </div>
+                <button class="date-range-toggle" type="button" data-date-range-toggle hidden>添加结束日期</button>
               </div>
               <div class="field line-field full">
                 <label for="location">地点 *</label>
@@ -143,8 +156,8 @@
                   <option value="还不确定">还不确定</option>
                   <option value="约 300-500 欧">约 300-500 欧</option>
                   <option value="500-800 欧">500-800 欧</option>
-                  <option value="800-1200 欧">800-1200 欧</option>
-                  <option value="1200 欧以上">1200 欧以上</option>
+                  <option value="800-1,200 欧">800-1,200 欧</option>
+                  <option value="1,200 欧以上">1,200 欧以上</option>
                   <option value="婚礼或定制报价">婚礼或定制报价</option>
                 </select>
               </div>
@@ -174,19 +187,6 @@
             <button class="button" type="submit">发送咨询</button>
             <p class="form-message" data-form-message tabindex="-1" role="status" aria-live="polite">谢谢，你的咨询已经发送。Fiona 会在 48 小时内回复。</p>
           </form>
-        </div>
-      </section>
-
-      <section class="section band contact-response-section">
-        <div class="container">
-          <div class="cta-band">
-            <div>
-              <p class="eyebrow">咨询提示</p>
-              <h2>咨询更快得到回复</h2>
-              <p>请尽量写清日期、地点、从哪里飞来、拍摄类型、预算范围和你最在意的画面。这样 Fiona 可以更快判断是否适合、需要哪些服务、报价怎么组成。</p>
-            </div>
-            <a class="button" href="/zh/faq.html">先看常见问题</a>
-          </div>
         </div>
       </section>
 

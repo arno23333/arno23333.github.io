@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
       locale: "zh-CN",
       datePlaceholder: "选择日期或日期范围",
       rangeSeparator: " 至 ",
+      dateHelp: "选择拍摄日期；如果是多日拍摄，可以再添加结束日期。",
+      dateRangeHelp: "请选择结束日期。只拍一天时，不需要添加结束日期。",
+      addEndDate: "添加结束日期",
+      changeEndDate: "修改结束日期",
       sendingMessage: "正在发送你的咨询...",
       sendingButton: "发送中...",
       formError: "表单暂时无法发送。",
@@ -19,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
       locale: "en-GB",
       datePlaceholder: "Select a date or date range",
       rangeSeparator: " to ",
+      dateHelp: "Choose the session date; add an end date only if you need a range.",
+      dateRangeHelp: "Choose the end date. For a one-day session, you do not need an end date.",
+      addEndDate: "Add an end date",
+      changeEndDate: "Change end date",
       sendingMessage: "Sending your inquiry...",
       sendingButton: "Sending...",
       formError: "The form cannot be sent right now",
@@ -29,6 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
       locale: "fr-FR",
       datePlaceholder: "Choisir une date ou une période",
       rangeSeparator: " au ",
+      dateHelp: "Choisissez la date de séance; ajoutez une date de fin uniquement si nécessaire.",
+      dateRangeHelp: "Choisissez la date de fin. Pour une séance d'une journée, elle n'est pas nécessaire.",
+      addEndDate: "Ajouter une date de fin",
+      changeEndDate: "Modifier la date de fin",
       sendingMessage: "Envoi de votre demande...",
       sendingButton: "Envoi...",
       formError: "Le formulaire ne peut pas être envoyé pour le moment",
@@ -39,6 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
       locale: "de-DE",
       datePlaceholder: "Datum oder Zeitraum auswählen",
       rangeSeparator: " bis ",
+      dateHelp: "Wählen Sie das Session-Datum; fügen Sie nur bei Bedarf ein Enddatum hinzu.",
+      dateRangeHelp: "Wählen Sie das Enddatum. Für eine eintägige Session ist kein Enddatum nötig.",
+      addEndDate: "Enddatum hinzufügen",
+      changeEndDate: "Enddatum ändern",
       sendingMessage: "Ihre Anfrage wird gesendet...",
       sendingButton: "Wird gesendet...",
       formError: "Das Formular kann gerade nicht gesendet werden",
@@ -375,6 +391,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const trigger = field.querySelector("[data-date-trigger]");
     const hiddenInput = field.querySelector("[data-date-value]");
     const error = field.querySelector("[data-date-error]");
+    const help = picker.querySelector("[data-date-help]");
+    const rangeToggle = field.querySelector("[data-date-range-toggle]");
     const label = picker.querySelector("[data-calendar-label]");
     const grid = picker.querySelector("[data-calendar-grid]");
     const previous = picker.querySelector("[data-calendar-prev]");
@@ -385,6 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let rangeStart = null;
     let rangeEnd = null;
     let previewEnd = null;
+    let selectingRangeEnd = false;
 
     const formatDate = (date) => date.toLocaleDateString(copy.locale, {
       year: "numeric",
@@ -419,16 +438,33 @@ document.addEventListener("DOMContentLoaded", () => {
       if (error) error.hidden = true;
     };
 
+    const updateHelp = () => {
+      if (!help) return;
+      help.textContent = selectingRangeEnd ? copy.dateRangeHelp : copy.dateHelp;
+    };
+
+    const updateRangeToggle = () => {
+      if (!rangeToggle) return;
+      rangeToggle.hidden = !rangeStart;
+      rangeToggle.textContent = rangeEnd ? copy.changeEndDate : copy.addEndDate;
+    };
+
     const openPicker = () => {
       picker.hidden = false;
       trigger.setAttribute("aria-expanded", "true");
+      updateHelp();
       render();
     };
 
     const closePicker = () => {
       picker.hidden = true;
       trigger.setAttribute("aria-expanded", "false");
+      if (selectingRangeEnd && !rangeEnd) {
+        selectingRangeEnd = false;
+      }
       previewEnd = null;
+      updateHelp();
+      updateRangeToggle();
     };
 
     const isBetween = (date, start, end) => {
@@ -491,18 +527,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         button.addEventListener("mouseenter", () => {
-          if (rangeStart && !rangeEnd) {
+          if (rangeStart && selectingRangeEnd && !rangeEnd) {
             previewEnd = date;
             updateDayClasses();
           }
         });
 
         button.addEventListener("click", () => {
-          if (!rangeStart || rangeEnd) {
+          if (!rangeStart || rangeEnd || !selectingRangeEnd) {
             rangeStart = date;
             rangeEnd = null;
             previewEnd = null;
+            selectingRangeEnd = false;
+            updateValue();
+            updateRangeToggle();
             updateDayClasses();
+            closePicker();
             return;
           }
 
@@ -512,7 +552,9 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             rangeEnd = date;
           }
+          selectingRangeEnd = false;
           updateValue();
+          updateRangeToggle();
           updateDayClasses();
           closePicker();
         });
@@ -521,7 +563,9 @@ document.addEventListener("DOMContentLoaded", () => {
           rangeStart = date;
           rangeEnd = date;
           previewEnd = null;
+          selectingRangeEnd = false;
           updateValue();
+          updateRangeToggle();
           updateDayClasses();
           closePicker();
         });
@@ -550,6 +594,21 @@ document.addEventListener("DOMContentLoaded", () => {
       render();
     });
 
+    if (rangeToggle) {
+      rangeToggle.addEventListener("click", () => {
+        if (!rangeStart) {
+          openPicker();
+          return;
+        }
+        rangeEnd = null;
+        previewEnd = rangeStart;
+        selectingRangeEnd = true;
+        updateValue();
+        updateRangeToggle();
+        openPicker();
+      });
+    }
+
     document.addEventListener("click", (event) => {
       if (!event.composedPath().includes(field)) {
         closePicker();
@@ -564,12 +623,16 @@ document.addEventListener("DOMContentLoaded", () => {
       rangeStart = null;
       rangeEnd = null;
       previewEnd = null;
+      selectingRangeEnd = false;
       updateValue();
+      updateRangeToggle();
       if (error) error.hidden = true;
       render();
     });
 
     render();
+    updateHelp();
+    updateRangeToggle();
   });
 
   document.querySelectorAll("[data-other-select]").forEach((select) => {

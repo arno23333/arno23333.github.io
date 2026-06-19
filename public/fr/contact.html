@@ -32,7 +32,7 @@
         <a href="/fr/booking.html">Services & tarifs</a>
         <a href="/fr/process.html">Processus</a>
         <a href="/fr/faq.html">Questions fréquentes</a>
-        <a class="nav-cta" href="/fr/contact.html">Demander une disponibilité</a>
+        <a class="nav-cta" href="/fr/contact.html">Vérifier les disponibilités</a>
       </nav>
       <nav class="header-language-switcher" aria-label="Language selector">
         <a href="/zh/contact.html" hreflang="zh" lang="zh-CN">ZH</a>
@@ -48,13 +48,25 @@
           <section class="contact-visual-carousel" aria-label="Aperçu de l'ambiance de séance" data-hero-carousel>
             <div class="contact-visual-track">
               <figure class="contact-visual-slide is-active" data-carousel-slide>
-                <img src="/assets/work/website/56-dscf7516.jpg" alt="Portrait en robe bleue devant le toit dans le sud de la France">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/56-dscf7516-720.avif 720w, /assets/responsive/56-dscf7516-1200.avif 1200w, /assets/responsive/56-dscf7516-1800.avif 1800w, /assets/responsive/56-dscf7516-2200.avif 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/56-dscf7516-720.webp 720w, /assets/responsive/56-dscf7516-1200.webp 1200w, /assets/responsive/56-dscf7516-1800.webp 1800w, /assets/responsive/56-dscf7516-2200.webp 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/56-dscf7516.jpg" alt="Portrait en robe bleue devant le toit dans le sud de la France" width="2200" height="1467" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
               <figure class="contact-visual-slide" data-carousel-slide>
-                <img src="/assets/work/website/82-26.jpg" alt="Petite table et chaises sur la pelouse avec vue sur la montagne">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/82-26-720.avif 720w, /assets/responsive/82-26-1200.avif 1200w, /assets/responsive/82-26-1467.avif 1467w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/82-26-720.webp 720w, /assets/responsive/82-26-1200.webp 1200w, /assets/responsive/82-26-1467.webp 1467w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/82-26.jpg" alt="Petite table et chaises sur la pelouse avec vue sur la montagne" width="1467" height="2200" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
               <figure class="contact-visual-slide" data-carousel-slide>
-                <img src="/assets/work/website/01-9k6a0273.jpg" alt="Couples de mariés sortant de l'hôtel de ville">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/14-dscf0393-720.avif 720w, /assets/responsive/14-dscf0393-1200.avif 1200w, /assets/responsive/14-dscf0393-1800.avif 1800w, /assets/responsive/14-dscf0393-2200.avif 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/14-dscf0393-720.webp 720w, /assets/responsive/14-dscf0393-1200.webp 1200w, /assets/responsive/14-dscf0393-1800.webp 1800w, /assets/responsive/14-dscf0393-2200.webp 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/14-dscf0393.jpg" alt="Détail du bouquet de mariée et de la robe de mariage" width="2200" height="1466" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
             </div>
             <div class="contact-visual-dots" aria-label="Passer à la prise de photos d'ambiance">
@@ -106,8 +118,9 @@
                     <span>Dim</span>
                   </div>
                   <div class="date-grid" data-calendar-grid role="grid" aria-label="Choisir la date souhaitée"></div>
-                  <p class="date-help">Cliquez d’abord sur la date de début, puis sur la date de fin, Pour une séance d’une journée, choisissez deux fois la même date</p>
+                  <p class="date-help" data-date-help>Choisissez la date de séance; ajoutez une date de fin uniquement si nécessaire.</p>
                 </div>
+                <button class="date-range-toggle" type="button" data-date-range-toggle hidden>Ajouter une date de fin</button>
               </div>
               <div class="field line-field full">
                 <label for="location">Lieu *</label>
@@ -141,29 +154,27 @@
                 <select id="budget-range" name="budget-range">
                   <option value="" selected>Fourchette budgétaire approximative</option>
                   <option value="Pas encore sûr">Pas encore sûr</option>
-                  <option value="Environ 300-500 EUR">Environ 300-500 EUR</option>
-                  <option value="500-800 EUR">500-800 EUR</option>
-                  <option value="800-1200 EUR">800-1200 EUR</option>
-                  <option value="1200 EUR et plus">1200 EUR et plus</option>
+                  <option value="Environ 300-500 €">Environ 300-500 €</option>
+                  <option value="500-800 €">500-800 €</option>
+                  <option value="800-1 200 €">800-1 200 €</option>
+                  <option value="1 200 € et plus">1 200 € et plus</option>
                   <option value="Mariage ou devis personnalisé">Mariage ou devis personnalisé</option>
                 </select>
               </div>
               <div class="field line-field full select-field">
-                <label for="heard-from">D'où me connais-tu?</label>
+                <label for="heard-from">Comment m’avez-vous trouvée ?</label>
                 <select id="heard-from" name="heard-from" data-other-select aria-controls="heard-from-other-field">
-                  <option value="" selected>D'où me connais-tu?</option>
+                  <option value="" selected>Comment m’avez-vous trouvée ?</option>
                   <option value="Google">Google</option>
                   <option value="Instagram">Instagram</option>
-                  <option value="Xiaohongshu">Xiaohongshu</option>
                   <option value="TikTok">TikTok</option>
-                  <option value="Douyin">Douyin</option>
                   <option value="Recommandé par des amis">Recommandé par des amis</option>
                   <option value="Organisateur de mariage ou autres fournisseurs">Organisateur de mariage ou autres fournisseurs</option>
                   <option value="Other">Autre</option>
                 </select>
               </div>
               <div class="field line-field full other-detail" id="heard-from-other-field" hidden>
-                <label for="heard-from-other">Où m'as-tu vu? *</label>
+                <label for="heard-from-other">Où m’avez-vous trouvée ? *</label>
                 <input id="heard-from-other" name="heard-from-other" placeholder="Où m’avez-vous trouvée ? *" disabled>
               </div>
               <div class="field line-field full">
@@ -174,19 +185,6 @@
             <button class="button" type="submit">Envoyer une demande</button>
             <p class="form-message" data-form-message tabindex="-1" role="status" aria-live="polite">Merci, votre demande a été envoyée, Fiona vous répondra dans les 48 heures</p>
           </form>
-        </div>
-      </section>
-
-      <section class="section band contact-response-section">
-        <div class="container">
-          <div class="cta-band">
-            <div>
-              <p class="eyebrow">Conseils de consultation</p>
-              <h2>Une demande claire reçoit une réponse plus rapide</h2>
-              <p>Indiquez la date, le lieu, votre ville de départ, le type de séance, le budget approximatif et les images qui comptent le plus pour vous, Cela aide Fiona à comprendre ce qui convient et ce qui doit être chiffré</p>
-            </div>
-            <a class="button" href="/fr/faq.html">Lisez d'abord la foire aux questions</a>
-          </div>
         </div>
       </section>
 

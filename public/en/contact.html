@@ -48,13 +48,25 @@
           <section class="contact-visual-carousel" aria-label="Shooting atmosphere preview" data-hero-carousel>
             <div class="contact-visual-track">
               <figure class="contact-visual-slide is-active" data-carousel-slide>
-                <img src="/assets/work/website/56-dscf7516.jpg" alt="Portrait in blue dress in front of rooftop in southern France">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/56-dscf7516-720.avif 720w, /assets/responsive/56-dscf7516-1200.avif 1200w, /assets/responsive/56-dscf7516-1800.avif 1800w, /assets/responsive/56-dscf7516-2200.avif 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/56-dscf7516-720.webp 720w, /assets/responsive/56-dscf7516-1200.webp 1200w, /assets/responsive/56-dscf7516-1800.webp 1800w, /assets/responsive/56-dscf7516-2200.webp 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/56-dscf7516.jpg" alt="Portrait in blue dress on a rooftop in the South of France" width="2200" height="1467" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
               <figure class="contact-visual-slide" data-carousel-slide>
-                <img src="/assets/work/website/82-26.jpg" alt="Small table and chairs on the lawn with mountain view">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/82-26-720.avif 720w, /assets/responsive/82-26-1200.avif 1200w, /assets/responsive/82-26-1467.avif 1467w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/82-26-720.webp 720w, /assets/responsive/82-26-1200.webp 1200w, /assets/responsive/82-26-1467.webp 1467w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/82-26.jpg" alt="Small table and chairs on the lawn with mountain view" width="1467" height="2200" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
               <figure class="contact-visual-slide" data-carousel-slide>
-                <img src="/assets/work/website/01-9k6a0273.jpg" alt="Wedding couple walking out of the city hall">
+                <picture>
+                  <source type="image/avif" srcset="/assets/responsive/14-dscf0393-720.avif 720w, /assets/responsive/14-dscf0393-1200.avif 1200w, /assets/responsive/14-dscf0393-1800.avif 1800w, /assets/responsive/14-dscf0393-2200.avif 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <source type="image/webp" srcset="/assets/responsive/14-dscf0393-720.webp 720w, /assets/responsive/14-dscf0393-1200.webp 1200w, /assets/responsive/14-dscf0393-1800.webp 1800w, /assets/responsive/14-dscf0393-2200.webp 2200w" sizes="(max-width: 960px) 100vw, 50vw">
+                  <img src="/assets/work/website/14-dscf0393.jpg" alt="Bride holding a pink bouquet and wedding dress detail" width="2200" height="1466" loading="lazy" fetchpriority="low" decoding="async">
+                </picture>
               </figure>
             </div>
             <div class="contact-visual-dots" aria-label="Switch to taking mood photos">
@@ -106,13 +118,14 @@
                     <span>Sun</span>
                   </div>
                   <div class="date-grid" data-calendar-grid role="grid" aria-label="Select your preferred session date"></div>
-                  <p class="date-help">Click the start date first, then the end date, For a one-day session, choose the same date twice</p>
+                  <p class="date-help" data-date-help>Choose the session date; add an end date only if you need a range.</p>
                 </div>
+                <button class="date-range-toggle" type="button" data-date-range-toggle hidden>Add an end date</button>
               </div>
               <div class="field line-field full">
                 <label for="location">Location *</label>
                 <input id="location" name="location" placeholder="Location * (Nice, Monaco, Provence)" required>
-                <p class="field-note">Regular session areas include Nice and nearby Côte d'Azur locations; Provence, Saint-Tropez or other French cities can be confirmed separately depending on date, travel and the plan</p>
+                <p class="field-note">Regular session areas include Nice and nearby Côte d’Azur locations; Provence, Saint-Tropez or other French cities can be confirmed separately depending on date, travel and the plan</p>
               </div>
               <div class="field line-field full">
                 <label for="travel-origin">Where did you fly from?</label>
@@ -141,10 +154,10 @@
                 <select id="budget-range" name="budget-range">
                   <option value="" selected>Approximate budget range</option>
                   <option value="Not sure yet">Not sure yet</option>
-                  <option value="About 300-500 EUR">About 300-500 EUR</option>
-                  <option value="500-800 EUR">500-800 EUR</option>
-                  <option value="800-1200 EUR">800-1200 EUR</option>
-                  <option value="1200 EUR and above">1200 EUR and above</option>
+                  <option value="About €300-€500">About €300-€500</option>
+                  <option value="€500-€800">€500-€800</option>
+                  <option value="€800-€1,200">€800-€1,200</option>
+                  <option value="€1,200 and above">€1,200 and above</option>
                   <option value="Wedding or custom quote">Wedding or custom quote</option>
                 </select>
               </div>
@@ -154,9 +167,7 @@
                   <option value="" selected>Where do you know me from?</option>
                   <option value="Google">Google</option>
                   <option value="Instagram">Instagram</option>
-                  <option value="Xiaohongshu">Xiaohongshu</option>
                   <option value="TikTok">TikTok</option>
-                  <option value="Douyin">Douyin</option>
                   <option value="Recommended by friends">Recommended by friends</option>
                   <option value="Wedding planner or other vendors">Wedding planner or other vendors</option>
                   <option value="Other">Other</option>
@@ -174,19 +185,6 @@
             <button class="button" type="submit">Send inquiry</button>
             <p class="form-message" data-form-message tabindex="-1" role="status" aria-live="polite">Thank you, your inquiry has been sent, Fiona will reply within 48 hours</p>
           </form>
-        </div>
-      </section>
-
-      <section class="section band contact-response-section">
-        <div class="container">
-          <div class="cta-band">
-            <div>
-              <p class="eyebrow">Inquiry tips</p>
-              <h2>A clearer inquiry gets a faster reply</h2>
-              <p>Please include the date, location, where you are travelling from, type of session, budget range and the images you care about most, It helps Fiona see what fits and what should be quoted</p>
-            </div>
-            <a class="button" href="/en/faq.html">Read the frequently asked questions first</a>
-          </div>
         </div>
       </section>
 
@@ -214,7 +212,7 @@
               <div class="review-body">
                 <p class="review-name">Wang Xiaoye</p>
                 <h3>A very comfortable photo session</h3>
-                <p class="review-copy">The session with Fiona felt very comfortable, she is careful, has her own aesthetic and pays attention to light, background, posture and atmosphere, even if you are not used to the camera, she helps you relax, the final photos are beautiful and carry the emotion and story of that moment, I would recommend her to friends who want photos in South France</p>
+                <p class="review-copy">The session with Fiona felt very comfortable, she is careful, has her own aesthetic and pays attention to light, background, posture and atmosphere, even if you are not used to the camera, she helps you relax, the final photos are beautiful and carry the emotion and story of that moment, I would recommend her to friends who want photos in the South of France</p>
               </div>
             </article>
           </div>
