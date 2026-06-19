@@ -4140,6 +4140,14 @@ details p {
   display: none;
 }
 
+.portfolio-grid.portfolio-editorial-flow .website-masonry-item picture {
+  position: static;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .portfolio-grid.portfolio-editorial-flow .website-masonry-item img {
   position: static;
   inset: auto;
