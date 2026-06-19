@@ -11,6 +11,7 @@
 - 2026-06-18：根目录旧页面、旧样式脚本、设计预览稿、临时输出目录和根目录 `assets/` 已清理；正式素材统一保留在 `public/assets/`。
 - 2026-06-18：地点指南草稿已迁入 `public/zh/venue-guides-draft.html`，继续保留 `noindex, nofollow`，不进入公开导航。
 - 2026-06-18：已新增英文、法语、德语目录：`public/en/`、`public/fr/`、`public/de/`。主域名默认入口已切到英文 `/en/`，中文保留在 `/zh/`。
+- 2026-06-19：用户确认正式网址已放入 Instagram 对外入口。此后网站按生产站维护，不能再按测试页处理；任何公开页面改动都要先本地检查，再提交、推送并等 GitHub Actions 部署成功后才算线上更新。
 
 ## 当前线上地址与部署方式
 
@@ -19,6 +20,7 @@
 - 正式法语入口：`https://www.fionatangstudio.com/fr/`
 - 正式德语入口：`https://www.fionatangstudio.com/de/`
 - 主域名入口：`https://www.fionatangstudio.com/`，当前进入英文版本 `/en/`
+- Instagram 对外入口：用户已确认使用正式主域名 `https://www.fionatangstudio.com/`，默认落地英文 `/en/`
 - GitHub Pages 默认地址：`https://arno23333.github.io/`，只作为托管默认地址和排障入口，不作为对外主链接
 - GitHub 仓库：`arno23333/arno23333.github.io`
 - GitHub 分支：`master`
@@ -28,6 +30,8 @@
 以后更新正式网站不是本地保存后自动上线。正确链路是：修改 `public/` 下的正式文件，检查页面，提交到 Git，再推送 `master`，GitHub Actions 成功后线上站点才会更新。
 
 协作口令约定：用户说“推送”时，默认不是只执行 `git push`，而是先检查本次相关文件，再暂存本次相关改动，创建一次 Git commit 作为本地存档，然后推送到 GitHub，最后等待 GitHub Actions 自动部署并检查结果。这里的“存档”对应 `git commit`；`git push` 只是把已经创建的 commit 同步到 GitHub。
+
+Instagram 已经挂正式网址后，每次准备推送前都要把它当作有真实访客的生产站检查：不要把本地地址、GitHub 默认地址、内部说明、占位内容、未确认规则或测试入口暴露到公开页面。主社交入口优先使用 `https://www.fionatangstudio.com/`，不要使用 `https://arno23333.github.io/`。
 
 ## 正式发布目录
 
@@ -110,7 +114,7 @@ public/
 3. About 页的小哲个人介绍、工作照、幕后照或视频。
 4. Booking 页当前已公开主要起价；后续价格变动需同步页面、Contact、FAQ 和 Process。订金规则、交付周期、加时费和异地费用仍需按最终商业规则持续维护。
 5. FAQ 中所有标注“待确认”的真实规则。
-6. Contact 页已接入 Web3Forms；上线后仍需确认 Web3Forms 后台允许 `https://www.fionatangstudio.com` 作为正式域名，避免表单在正式站点提交失败。
+6. Contact 页已接入 Web3Forms；Instagram 已挂正式网址后，表单可用性应作为优先检查项。仍需确认 Web3Forms 后台允许 `https://www.fionatangstudio.com` 作为正式域名，避免表单在正式站点提交失败。
 7. 如果地点指南上线前还没定稿，先从所有页头导航里移除 `venue-guides-draft.html` 入口，并继续保留 `noindex`。
 8. Google 评价或客户原话。没有真实评价前，不要编造。
 
