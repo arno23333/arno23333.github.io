@@ -4475,8 +4475,12 @@ details p {
   }
 
   .about-cinematic-hero h1 {
-    top: 166px;
-    font-size: 58px;
+    top: 112px;
+    width: max-content;
+    max-width: calc(100vw - 36px);
+    font-size: 50px;
+    line-height: 0.95;
+    white-space: nowrap;
   }
 
   .about-cinematic-portrait {
