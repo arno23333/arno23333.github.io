@@ -633,7 +633,9 @@ select {
   color: var(--paper-soft);
   background: var(--charcoal);
   cursor: grab;
+  touch-action: pan-y;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hero-carousel.is-dragging {
@@ -1282,15 +1284,19 @@ select {
 }
 
 .about-trust-points span {
-  display: inline-flex;
-  align-items: center;
+  display: block;
   min-height: 34px;
+  max-width: 100%;
   padding: 7px 12px;
+  box-sizing: border-box;
   background: rgba(251, 248, 241, 0.72);
   border: 1px solid rgba(101, 115, 101, 0.28);
   border-radius: 999px;
   font-size: 14px;
   line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .about-editorial-story {
@@ -1880,6 +1886,7 @@ select {
   gap: var(--portfolio-cta-space);
   align-items: start;
   margin-bottom: var(--portfolio-cta-space);
+  scroll-margin-top: 116px;
 }
 
 .portfolio-filter-panel {
@@ -1932,6 +1939,66 @@ select {
 
 .portfolio-quick-link:hover {
   color: var(--ink);
+}
+
+.portfolio-floating-actions {
+  position: fixed;
+  right: clamp(18px, 2.4vw, 34px);
+  bottom: clamp(20px, 2.7vw, 34px);
+  z-index: 80;
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.portfolio-floating-actions.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.portfolio-floating-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  min-height: 34px;
+  padding: 8px 13px;
+  color: var(--ink);
+  background: rgba(246, 240, 229, 0.84);
+  border: 1px solid rgba(47, 62, 54, 0.2);
+  border-radius: 999px;
+  box-shadow: 0 12px 32px rgba(43, 50, 41, 0.16);
+  backdrop-filter: blur(14px);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.portfolio-floating-action:hover,
+.portfolio-floating-action:focus-visible {
+  color: var(--paper-soft);
+  background: var(--sage-dark);
+  border-color: var(--sage-dark);
+  outline: none;
+}
+
+.portfolio-floating-action-inquire {
+  color: var(--paper-soft);
+  background: rgba(47, 62, 54, 0.92);
+  border-color: rgba(47, 62, 54, 0.92);
+}
+
+.portfolio-floating-action-inquire:hover,
+.portfolio-floating-action-inquire:focus-visible {
+  background: var(--rust);
+  border-color: var(--rust);
 }
 
 .portfolio-editorial-section .filter-bar {
@@ -2325,7 +2392,9 @@ details p {
   border-radius: 0 var(--radius) var(--radius) 0;
   box-shadow: 0 28px 80px rgba(29, 31, 26, 0.14);
   cursor: grab;
+  touch-action: pan-y;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
   justify-self: stretch;
 }
 
@@ -3870,6 +3939,20 @@ details p {
     max-width: 100%;
     overflow-wrap: anywhere;
     white-space: normal;
+  }
+
+  .portfolio-floating-actions {
+    right: 13px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    gap: 7px;
+  }
+
+  .portfolio-floating-action {
+    min-width: 50px;
+    min-height: 32px;
+    padding: 7px 11px;
+    font-size: 11px;
+    box-shadow: 0 10px 24px rgba(43, 50, 41, 0.14);
   }
 
   .info-panel,

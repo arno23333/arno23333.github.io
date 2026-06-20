@@ -123,6 +123,51 @@ document.addEventListener("DOMContentLoaded", () => {
   openHashDetails();
   window.addEventListener("hashchange", openHashDetails);
 
+  const investmentItems = Array.from(document.querySelectorAll(".investment-accordion .investment-item"));
+  if (investmentItems.length) {
+    let investmentScrollToken = 0;
+    const scrollInvestmentItemIntoView = (item) => {
+      const header = document.querySelector(".site-header");
+      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+      const offset = Math.ceil(headerHeight + 18);
+      const top = item.getBoundingClientRect().top + window.scrollY - offset;
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(0, Math.max(0, top));
+      root.style.scrollBehavior = previousScrollBehavior;
+    };
+
+    const queueInvestmentScroll = (item) => {
+      investmentScrollToken += 1;
+      const currentToken = investmentScrollToken;
+      const scrollIfCurrent = () => {
+        if (currentToken !== investmentScrollToken || !item.open) return;
+        scrollInvestmentItemIntoView(item);
+      };
+
+      window.requestAnimationFrame(scrollIfCurrent);
+      window.setTimeout(scrollIfCurrent, 90);
+      window.setTimeout(scrollIfCurrent, 260);
+    };
+
+    investmentItems.forEach((item) => {
+      item.addEventListener("toggle", () => {
+        if (item.open) {
+          if (item.id && window.location.hash !== `#${item.id}`) {
+            history.replaceState(null, "", `#${item.id}`);
+          }
+          queueInvestmentScroll(item);
+        }
+      });
+    });
+
+    const activeInvestmentItem = window.location.hash ? document.getElementById(window.location.hash.slice(1)) : null;
+    if (activeInvestmentItem && activeInvestmentItem.matches(".investment-accordion .investment-item") && activeInvestmentItem.open) {
+      queueInvestmentScroll(activeInvestmentItem);
+    }
+  }
+
   const faqLayout = document.querySelector(".faq-layout");
   if (faqLayout) {
     const scrollToFaqHash = (hash, options = {}) => {
@@ -170,7 +215,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let intervalId = null;
     let isDragging = false;
     let dragStartX = 0;
+    let dragStartY = 0;
     let dragLastX = 0;
+    let dragLastY = 0;
+    let dragAxis = null;
+    let activePointerId = null;
+    let hasPointerCapture = false;
+    let suppressNextClick = false;
 
     const showSlide = (index) => {
       activeIndex = (index + slides.length) % slides.length;
@@ -203,36 +254,131 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    carousel.addEventListener("pointerdown", (event) => {
-      if (event.target.closest("[data-carousel-dot]")) return;
+    const interactiveSelector = "[data-carousel-dot], a, button, input, select, textarea, label";
+
+    const startDrag = (x, y, pointerId = null) => {
       isDragging = true;
-      dragStartX = event.clientX;
-      dragLastX = event.clientX;
+      dragStartX = x;
+      dragStartY = y;
+      dragLastX = x;
+      dragLastY = y;
+      dragAxis = null;
+      activePointerId = pointerId;
+      hasPointerCapture = false;
       carousel.classList.add("is-dragging");
       stopAuto();
-      if (carousel.setPointerCapture) {
-        carousel.setPointerCapture(event.pointerId);
-      }
-    });
+    };
 
-    carousel.addEventListener("pointermove", (event) => {
-      if (!isDragging) return;
-      dragLastX = event.clientX;
-    });
-
-    const finishDrag = () => {
-      if (!isDragging) return;
-      const deltaX = dragLastX - dragStartX;
-      if (Math.abs(deltaX) > 44) {
-        showSlide(activeIndex + (deltaX < 0 ? 1 : -1));
+    const releasePointerCapture = () => {
+      if (activePointerId === null || !hasPointerCapture || !carousel.releasePointerCapture) return;
+      try {
+        carousel.releasePointerCapture(activePointerId);
+      } catch (error) {
+        // Pointer capture can already be released by the browser.
       }
+      hasPointerCapture = false;
+    };
+
+    const cancelDrag = () => {
+      if (!isDragging) return;
       isDragging = false;
+      dragAxis = null;
+      releasePointerCapture();
+      activePointerId = null;
       carousel.classList.remove("is-dragging");
       startAuto();
     };
 
-    carousel.addEventListener("pointerup", finishDrag);
-    carousel.addEventListener("pointercancel", finishDrag);
+    const updateDrag = (x, y, event) => {
+      if (!isDragging) return;
+      dragLastX = x;
+      dragLastY = y;
+      const deltaX = dragLastX - dragStartX;
+      const deltaY = dragLastY - dragStartY;
+      const absX = Math.abs(deltaX);
+      const absY = Math.abs(deltaY);
+
+      if (!dragAxis && Math.max(absX, absY) > 8) {
+        dragAxis = absX > absY * 1.18 ? "x" : "y";
+        if (dragAxis === "x" && activePointerId !== null && carousel.setPointerCapture) {
+          try {
+            carousel.setPointerCapture(activePointerId);
+            hasPointerCapture = true;
+          } catch (error) {
+            hasPointerCapture = false;
+          }
+        }
+      }
+
+      if (dragAxis === "y") {
+        cancelDrag();
+        return;
+      }
+
+      if (dragAxis === "x" && event?.cancelable) {
+        event.preventDefault();
+      }
+    };
+
+    const finishDrag = () => {
+      if (!isDragging) return;
+      const deltaX = dragLastX - dragStartX;
+      const shouldChangeSlide = dragAxis === "x" && Math.abs(deltaX) > 44;
+      if (shouldChangeSlide) {
+        showSlide(activeIndex + (deltaX < 0 ? 1 : -1));
+      }
+      if (Math.abs(deltaX) > 12) {
+        suppressNextClick = true;
+        window.setTimeout(() => {
+          suppressNextClick = false;
+        }, 120);
+      }
+      isDragging = false;
+      dragAxis = null;
+      releasePointerCapture();
+      activePointerId = null;
+      carousel.classList.remove("is-dragging");
+      startAuto();
+    };
+
+    const supportsPointer = "PointerEvent" in window;
+
+    if (supportsPointer) {
+      carousel.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        if (event.target.closest(interactiveSelector)) return;
+        startDrag(event.clientX, event.clientY, event.pointerId);
+      });
+
+      carousel.addEventListener("pointermove", (event) => {
+        if (activePointerId !== null && event.pointerId !== activePointerId) return;
+        updateDrag(event.clientX, event.clientY, event);
+      });
+
+      carousel.addEventListener("pointerup", finishDrag);
+      carousel.addEventListener("pointercancel", cancelDrag);
+    } else {
+      carousel.addEventListener("touchstart", (event) => {
+        if (event.target.closest(interactiveSelector) || event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        startDrag(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      carousel.addEventListener("touchmove", (event) => {
+        if (!isDragging || event.touches.length !== 1) return;
+        const touch = event.touches[0];
+        updateDrag(touch.clientX, touch.clientY, event);
+      }, { passive: false });
+
+      carousel.addEventListener("touchend", finishDrag, { passive: true });
+      carousel.addEventListener("touchcancel", cancelDrag, { passive: true });
+    }
+
+    carousel.addEventListener("click", (event) => {
+      if (!suppressNextClick || event.target.closest("[data-carousel-dot]")) return;
+      event.preventDefault();
+      event.stopPropagation();
+    }, true);
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
@@ -384,6 +530,29 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load", () => {
       scrollToPortfolioFilter(window.location.hash.slice(1));
     });
+  }
+
+  const portfolioFloatingActions = document.querySelector("[data-portfolio-floating-actions]");
+  const portfolioFilterAnchor = document.querySelector("[data-portfolio-filter-anchor]");
+  if (portfolioFloatingActions && portfolioFilterAnchor) {
+    const updatePortfolioActions = () => {
+      const anchorTop = portfolioFilterAnchor.getBoundingClientRect().top + window.scrollY;
+      const gridTop = portfolioGrid ? portfolioGrid.getBoundingClientRect().top + window.scrollY : anchorTop + 520;
+      const triggerPoint = Math.max(420, gridTop - window.innerHeight * 0.34);
+      const shouldShow = window.scrollY > triggerPoint && window.scrollY > anchorTop + 120;
+      portfolioFloatingActions.classList.toggle("is-visible", shouldShow);
+    };
+
+    portfolioFloatingActions.querySelectorAll("[data-scroll-to-filters]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        scrollToAnchorWithHeader(portfolioFilterAnchor);
+      });
+    });
+
+    updatePortfolioActions();
+    window.addEventListener("scroll", updatePortfolioActions, { passive: true });
+    window.addEventListener("resize", updatePortfolioActions);
   }
 
   document.querySelectorAll("[data-date-picker]").forEach((picker) => {

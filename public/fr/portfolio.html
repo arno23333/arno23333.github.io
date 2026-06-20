@@ -53,7 +53,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=LXGW+WenKai&family=Noto+Serif:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=20260619-final">
+    <link rel="stylesheet" href="/styles.css?v=20260620-touch">
   </head>
   <body>
     <header class="site-header">
@@ -69,7 +69,7 @@
         <a href="/fr/portfolio.html">Portfolio</a>
         <a href="/fr/about.html">À propos</a>
         <a href="/fr/booking.html">Services & tarifs</a>
-        <a href="/fr/process.html">Processus</a>
+        <a href="/fr/process.html">Déroulement</a>
         <a href="/fr/faq.html">Questions fréquentes</a>
         <a class="nav-cta" href="/fr/contact.html">Vérifier les disponibilités</a>
       </nav>
@@ -85,9 +85,9 @@
       <section class="hero page-hero">
         <div class="hero-copy">
           <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/fr/">Accueil</a><span aria-hidden="true">/</span><span>Portfolio</span></nav>
-          <p class="eyebrow">Œuvres en vedette</p>
+          <p class="eyebrow">Sélection d’images</p>
           <h1>Amour, lumière et mémoire du sud de la France</h1>
-          <p class="lead">Une sélection du travail de Fiona autour des mariages, elopements, couples et portraits, naturel, intime, aéré et centré sur les émotions vraiment présentes</p>
+          <p class="lead">Une sélection du travail de Fiona autour des mariages, elopements, couples et portraits. La lumière naturelle, l’émotion réelle et l’atmosphère du sud de la France guident le choix des images.</p>
         </div>
         <div class="hero-visual image-frame">
           <picture>
@@ -100,24 +100,24 @@
 
       <section class="section portfolio-editorial-section">
         <div class="container portfolio-editorial-container">
-          <div class="portfolio-control-row">
+          <div class="portfolio-control-row" id="portfolio-filters" data-portfolio-filter-anchor>
             <div class="portfolio-filter-panel">
               <div class="section-heading portfolio-action-heading">
                 <div>
-              <p class="eyebrow">Filtrer les images</p>
+              <p class="eyebrow">Filtres du portfolio</p>
                   <h2>Parcourir par type</h2>
                 </div>
               </div>
-              <div class="filter-bar" aria-label="Dépistage du travail">
-                <button class="filter-button is-active" type="button" data-filter="all">tous</button>
-                <button class="filter-button" id="wedding-elopement" type="button" data-filter="wedding-elopement">Mariage intime</button>
-                <button class="filter-button" id="couple" type="button" data-filter="couple">couple</button>
-                <button class="filter-button" id="portrait" type="button" data-filter="portrait">portrait</button>
-                <button class="filter-button" id="detail" type="button" data-filter="detail">Lieu/Détails</button>
+              <div class="filter-bar" aria-label="Filtres du portfolio">
+                <button class="filter-button is-active" type="button" data-filter="all">Tous</button>
+                <button class="filter-button" id="wedding-elopement" type="button" data-filter="wedding-elopement">Mariage / Elopement</button>
+                <button class="filter-button" id="couple" type="button" data-filter="couple">Couple</button>
+                <button class="filter-button" id="portrait" type="button" data-filter="portrait">Portrait</button>
+                <button class="filter-button" id="detail" type="button" data-filter="detail">Lieux / Détails</button>
               </div>
             </div>
             <div class="portfolio-quick-cta">
-              <span class="portfolio-quick-note">Vous aimez ce style? Envoyez votre date et votre lieu</span>
+              <span class="portfolio-quick-note">Ce style vous plaît ? Envoyez votre date et votre lieu</span>
               <a class="portfolio-quick-link" href="/fr/contact.html">Vérifier les disponibilités</a>
             </div>
           </div>
@@ -724,12 +724,12 @@
       <section class="section band">
         <div class="container two-col">
           <article class="info-panel">
-            <h3>En regardant l'œuvre, on ressent d'abord</h3>
-            <p>Regardez si vous aimez cette lumière naturelle, cette sensation légèrement cinématographique et ces images peu mises en scène, Fiona s’intéresse moins à la pose parfaite qu’à la proximité réelle et à l’émotion du moment</p>
+            <h3>Ce que vous pouvez regarder d’abord</h3>
+            <p>Observez la lumière, la proximité et le rythme qui vous attirent. Le travail de Fiona est guidé avec douceur, sans construire les images autour de poses figées.</p>
           </article>
           <article class="info-panel">
-            <h3>Si vous n'êtes pas encore sûr du type</h3>
-            <p>Vous pouvez commencer par l’ambiance que vous aimez: plus calme, plus romantique, plus voyage ou plus proche du quotidien, envoyez simplement cette direction lors de votre demande</p>
+            <h3>Si vous ne savez pas encore quelle séance choisir</h3>
+            <p>Commencez par l’atmosphère que vous aimez : calme, romantique, tournée vers le voyage ou plus proche du quotidien. Envoyez cette direction avec votre demande.</p>
           </article>
         </div>
       </section>
@@ -738,14 +738,19 @@
         <div class="container">
           <div class="cta-band">
             <div>
-              <p class="eyebrow">Vous aimez cette direction?</p>
-              <h2>Vous aimez ce sentiment? Parlons d'abord</h2>
-              <p>Si vous préparez un mariage, un elopement ou une séance couple, envoyez d’abord la date et le lieu, Fiona vérifiera si le projet convient</p>
+              <p class="eyebrow">Ce style vous plaît ?</p>
+              <h2>Envoyez votre date et votre lieu</h2>
+              <p>Si vous préparez un mariage, un elopement ou une séance couple, envoyez d’abord la date et le lieu. Fiona vérifiera ses disponibilités et ce qui peut convenir à votre projet.</p>
             </div>
             <a class="button" href="/fr/contact.html">Vérifier les disponibilités</a>
           </div>
         </div>
       </section>
+
+      <nav class="portfolio-floating-actions" data-portfolio-floating-actions aria-label="Actions rapides du portfolio">
+        <a class="portfolio-floating-action portfolio-floating-action-top" href="#portfolio-filters" data-scroll-to-filters aria-label="Revenir aux filtres du portfolio">Filtres</a>
+        <a class="portfolio-floating-action portfolio-floating-action-inquire" href="/fr/contact.html" aria-label="Envoyer une demande">Demande</a>
+      </nav>
     </main>
 
     <footer class="site-footer">
@@ -759,14 +764,14 @@
           </div>
           <h2>Portraits et images intimes dans le sud de la France</h2>
         </div>
-        <p>Services, déroulé, FAQ et liens de demande pour vos images dans le sud de la France</p>
+        <p>Services, déroulement, questions fréquentes et demande de disponibilité pour vos photos dans le sud de la France.</p>
       </div>
       <div class="footer-links">
         <a href="/fr/">Accueil</a>
         <a href="/fr/portfolio.html">Portfolio</a>
         <a href="/fr/about.html">À propos</a>
         <a href="/fr/booking.html">Services & tarifs</a>
-        <a href="/fr/process.html">Processus</a>
+        <a href="/fr/process.html">Déroulement</a>
         <a href="/fr/faq.html">Questions fréquentes</a>
         <a href="/fr/contact.html">Contact</a>
         <a href="/fr/privacy.html">Politique de confidentialité</a>
@@ -787,6 +792,6 @@
         </a>
       </div>
     </footer>
-    <script src="/script.js?v=20260619-final"></script>
+    <script src="/script.js?v=20260620-touch"></script>
   </body>
 </html>

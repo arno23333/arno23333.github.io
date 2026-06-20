@@ -53,7 +53,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=LXGW+WenKai&family=Noto+Serif:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=20260619-final">
+    <link rel="stylesheet" href="/styles.css?v=20260620-touch">
   </head>
   <body>
     <header class="site-header">
@@ -100,7 +100,7 @@
 
       <section class="section portfolio-editorial-section">
         <div class="container portfolio-editorial-container">
-          <div class="portfolio-control-row">
+          <div class="portfolio-control-row" id="portfolio-filters" data-portfolio-filter-anchor>
             <div class="portfolio-filter-panel">
               <div class="section-heading portfolio-action-heading">
                 <div>
@@ -746,6 +746,11 @@
           </div>
         </div>
       </section>
+
+      <nav class="portfolio-floating-actions" data-portfolio-floating-actions aria-label="作品快捷操作">
+        <a class="portfolio-floating-action portfolio-floating-action-top" href="#portfolio-filters" data-scroll-to-filters aria-label="回到作品筛选">筛选</a>
+        <a class="portfolio-floating-action portfolio-floating-action-inquire" href="/zh/contact.html" aria-label="咨询档期">咨询</a>
+      </nav>
     </main>
 
     <footer class="site-footer">
@@ -787,6 +792,6 @@
         </a>
       </div>
     </footer>
-    <script src="/script.js?v=20260619-final"></script>
+    <script src="/script.js?v=20260620-touch"></script>
   </body>
 </html>

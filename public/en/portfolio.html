@@ -53,7 +53,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=LXGW+WenKai&family=Noto+Serif:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v=20260619-final">
+    <link rel="stylesheet" href="/styles.css?v=20260620-touch">
   </head>
   <body>
     <header class="site-header">
@@ -87,7 +87,7 @@
           <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/en/">Home</a><span aria-hidden="true">/</span><span>Portfolio</span></nav>
           <p class="eyebrow">Featured works</p>
           <h1>Love, light and memory of the South of France</h1>
-          <p class="lead">A selection of Fiona’s work across weddings, elopements, couples and portraits, natural, intimate, spacious and focused on the emotions that were really there</p>
+          <p class="lead">A selection of Fiona’s work across weddings, elopements, couples and portraits. Natural light, real emotion and the feeling of the South of France guide the edit.</p>
         </div>
         <div class="hero-visual image-frame">
           <picture>
@@ -100,7 +100,7 @@
 
       <section class="section portfolio-editorial-section">
         <div class="container portfolio-editorial-container">
-          <div class="portfolio-control-row">
+          <div class="portfolio-control-row" id="portfolio-filters" data-portfolio-filter-anchor>
             <div class="portfolio-filter-panel">
               <div class="section-heading portfolio-action-heading">
                 <div>
@@ -110,10 +110,10 @@
               </div>
               <div class="filter-bar" aria-label="Portfolio filters">
                 <button class="filter-button is-active" type="button" data-filter="all">All</button>
-                <button class="filter-button" id="wedding-elopement" type="button" data-filter="wedding-elopement">Wedding/Elopement</button>
+                <button class="filter-button" id="wedding-elopement" type="button" data-filter="wedding-elopement">Wedding / Elopement</button>
                 <button class="filter-button" id="couple" type="button" data-filter="couple">Couple</button>
                 <button class="filter-button" id="portrait" type="button" data-filter="portrait">Portrait</button>
-                <button class="filter-button" id="detail" type="button" data-filter="detail">Venue/Details</button>
+                <button class="filter-button" id="detail" type="button" data-filter="detail">Venue / Details</button>
               </div>
             </div>
             <div class="portfolio-quick-cta">
@@ -724,12 +724,12 @@
       <section class="section band">
         <div class="container two-col">
           <article class="info-panel">
-            <h3>When looking at the work, you can first feel</h3>
-            <p>Notice whether you like this natural light, lightly cinematic feeling and images that are not overly staged, Fiona cares less about perfect posing and more about real closeness and emotion in the moment</p>
+            <h3>What to notice first</h3>
+            <p>Look for the light, closeness and pace you are drawn to. Fiona’s work is gently guided, but the images are not built around stiff posing.</p>
           </article>
           <article class="info-panel">
-            <h3>If you're not sure yet about the type</h3>
-            <p>You can start with the atmosphere you like: quieter, more romantic, more travel-like or closer to everyday life, send that direction when you inquire</p>
+            <h3>If you are not sure which session fits</h3>
+            <p>Start with the atmosphere you like: quiet, romantic, travel-focused or closer to everyday life. Send that direction with your inquiry.</p>
           </article>
         </div>
       </section>
@@ -738,14 +738,19 @@
         <div class="container">
           <div class="cta-band">
             <div>
-              <p class="eyebrow">Like this direction?</p>
-              <h2>Like this feeling? Let’s talk first</h2>
-              <p>If you are planning a wedding, elopement or couple session, send the date and location first, Fiona will check whether the plan fits</p>
+              <p class="eyebrow">Like this style?</p>
+              <h2>Send your date and location</h2>
+              <p>If you are planning a wedding, elopement or couple session, send the date and location first. Fiona will check availability and let you know what fits your plan.</p>
             </div>
             <a class="button" href="/en/contact.html">Check availability</a>
           </div>
         </div>
       </section>
+
+      <nav class="portfolio-floating-actions" data-portfolio-floating-actions aria-label="Portfolio quick actions">
+        <a class="portfolio-floating-action portfolio-floating-action-top" href="#portfolio-filters" data-scroll-to-filters aria-label="Back to portfolio filters">Top</a>
+        <a class="portfolio-floating-action portfolio-floating-action-inquire" href="/en/contact.html" aria-label="Check availability">Inquire</a>
+      </nav>
     </main>
 
     <footer class="site-footer">
@@ -787,6 +792,6 @@
         </a>
       </div>
     </footer>
-    <script src="/script.js?v=20260619-final"></script>
+    <script src="/script.js?v=20260620-touch"></script>
   </body>
 </html>
