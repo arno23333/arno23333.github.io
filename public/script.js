@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
       formError: "表单暂时无法发送。",
       formSuccess: "谢谢，你的咨询已经发送。Fiona 会在 48 小时内回复。",
       formFailure: "发送时出现问题。请直接发送邮件到 fionatanggg@gmail.com 联系 Fiona。",
+      wechatCopied: "已复制",
+      wechatCopyError: "请手动复制",
     },
     en: {
       locale: "en-GB",
@@ -32,6 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
       formError: "The form cannot be sent right now",
       formSuccess: "Thank you, your inquiry has been sent, Fiona will reply within 48 hours",
       formFailure: "Something went wrong, please email fionatanggg@gmail.com to contact Fiona",
+      wechatCopied: "Copied",
+      wechatCopyError: "Copy manually",
     },
     fr: {
       locale: "fr-FR",
@@ -46,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
       formError: "Le formulaire ne peut pas être envoyé pour le moment",
       formSuccess: "Merci, votre demande a été envoyée, Fiona vous répondra sous 48 heures",
       formFailure: "Un problème est survenu, écrivez directement à fionatanggg@gmail.com pour contacter Fiona",
+      wechatCopied: "Copié",
+      wechatCopyError: "Copie manuelle",
     },
     de: {
       locale: "de-DE",
@@ -60,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
       formError: "Das Formular kann gerade nicht gesendet werden",
       formSuccess: "Danke, Ihre Anfrage wurde gesendet, Fiona antwortet innerhalb von 48 Stunden",
       formFailure: "Es ist ein Problem aufgetreten, schreiben Sie bitte direkt an fionatanggg@gmail.com",
+      wechatCopied: "Kopiert",
+      wechatCopyError: "Manuell kopieren",
     },
   };
   const copy = copyByLang[pathLang] || copyByLang[pageLang.slice(0, 2)] || copyByLang.zh;
@@ -86,6 +94,43 @@ document.addEventListener("DOMContentLoaded", () => {
       link.classList.add("is-active");
     }
   });
+
+  const wechat = document.querySelector(".footer-wechat");
+  if (wechat) {
+    const wechatSummary = wechat.querySelector("summary");
+    const wechatId = wechat.querySelector(".footer-wechat-id");
+    const wechatCopy = wechat.querySelector(".footer-wechat-copy");
+    const wechatStatus = wechat.querySelector(".footer-wechat-status");
+
+    if (navigator.clipboard?.writeText) {
+      wechatCopy.hidden = false;
+      wechatCopy.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(wechatId.value);
+          if (wechat.open) wechatStatus.textContent = copy.wechatCopied;
+        } catch {
+          if (!wechat.open) return;
+          wechatId.focus();
+          wechatId.select();
+          wechatStatus.textContent = copy.wechatCopyError;
+        }
+      });
+    }
+
+    wechat.addEventListener("toggle", () => {
+      if (!wechat.open) wechatStatus.textContent = "";
+    });
+
+    wechat.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || !wechat.open) return;
+      wechat.open = false;
+      wechatSummary.focus();
+    });
+
+    document.addEventListener("click", (event) => {
+      if (wechat.open && !wechat.contains(event.target)) wechat.open = false;
+    });
+  }
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -535,12 +580,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const portfolioFloatingActions = document.querySelector("[data-portfolio-floating-actions]");
   const portfolioFilterAnchor = document.querySelector("[data-portfolio-filter-anchor]");
   if (portfolioFloatingActions && portfolioFilterAnchor) {
+    const footerWechatToggle = wechat?.querySelector("summary");
     const updatePortfolioActions = () => {
       const anchorTop = portfolioFilterAnchor.getBoundingClientRect().top + window.scrollY;
       const gridTop = portfolioGrid ? portfolioGrid.getBoundingClientRect().top + window.scrollY : anchorTop + 520;
       const triggerPoint = Math.max(420, gridTop - window.innerHeight * 0.34);
-      const shouldShow = window.scrollY > triggerPoint && window.scrollY > anchorTop + 120;
+      const footerIcon = footerWechatToggle?.getBoundingClientRect();
+      const crowdsFooter = footerIcon && footerIcon.top < window.innerHeight &&
+        footerIcon.right + 8 > portfolioFloatingActions.getBoundingClientRect().left;
+      const shouldShow = window.scrollY > triggerPoint && window.scrollY > anchorTop + 120 && !crowdsFooter;
       portfolioFloatingActions.classList.toggle("is-visible", shouldShow);
+      portfolioFloatingActions.inert = !shouldShow;
     };
 
     portfolioFloatingActions.querySelectorAll("[data-scroll-to-filters]").forEach((link) => {

@@ -3095,13 +3095,15 @@ details p {
 }
 
 .social-icons {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;
 }
 
-.social-icons a {
+.social-icons > a,
+.footer-wechat > summary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3112,7 +3114,9 @@ details p {
   border-radius: 999px;
 }
 
-.social-icons a:hover {
+.social-icons > a:hover,
+.footer-wechat > summary:hover,
+.footer-wechat[open] > summary {
   color: var(--charcoal);
   background: var(--paper-soft);
   border-color: var(--paper-soft);
@@ -3126,6 +3130,84 @@ details p {
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.7;
+}
+
+.social-icons .footer-rednote-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.social-icons .footer-wechat {
+  border: 0;
+}
+
+.footer-wechat > summary {
+  padding: 0;
+}
+
+.social-icons .footer-wechat > summary::after {
+  content: none;
+}
+
+.social-icons > a:focus-visible,
+.footer-wechat > summary:focus-visible {
+  outline: 2px solid var(--paper-soft);
+  outline-offset: 3px;
+}
+
+.footer-wechat-panel {
+  position: absolute;
+  z-index: 2;
+  inset-block-end: calc(100% + 10px);
+  inset-inline-start: 0;
+  width: min(240px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 14px;
+  color: var(--ink);
+  background: var(--paper-soft);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  font: 14px / 1.4 var(--font-ui);
+}
+
+.footer-wechat-status {
+  grid-area: 1 / 2;
+  margin: 0;
+  padding: 0;
+  color: var(--sage-dark);
+  font-size: 12px;
+}
+
+.footer-wechat-id {
+  min-width: 0;
+  grid-area: 2 / 1;
+  padding: 8px;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+}
+
+.footer-wechat-copy:not([hidden]) {
+  display: grid;
+  place-items: center;
+  grid-area: 2 / 2;
+  justify-self: end;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.footer-wechat-copy:hover {
+  background: var(--mist);
 }
 
 .hidden-draft {
