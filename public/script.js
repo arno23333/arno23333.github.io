@@ -292,6 +292,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 3400);
     };
 
+    carousel.querySelectorAll("[data-carousel-prev], [data-carousel-next]").forEach((arrow) => {
+      arrow.addEventListener("click", () => {
+        showSlide(activeIndex + (arrow.hasAttribute("data-carousel-next") ? 1 : -1));
+        startAuto();
+      });
+    });
+
     dots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
         showSlide(index);
@@ -836,6 +843,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closePicker();
+    });
+
+    field.addEventListener("date-range:set", (event) => {
+      const parts = String(event.detail || "").split("-").map(Number);
+      if (parts.length !== 3 || parts.some(Number.isNaN)) return;
+      const picked = startOfDay(new Date(parts[0], parts[1] - 1, parts[2]));
+      if (picked < today) return;
+      rangeStart = picked;
+      rangeEnd = null;
+      previewEnd = null;
+      selectingRangeEnd = false;
+      viewDate = new Date(picked.getFullYear(), picked.getMonth(), 1);
+      updateValue();
+      updateRangeToggle();
+      render();
     });
 
     field.addEventListener("date-range:clear", () => {
