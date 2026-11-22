@@ -573,3 +573,31 @@ html:lang(de) .card figure::after{content:"Serie ansehen →"}
 html:not(:lang(zh)) .ahero .lead{white-space:normal}
 @media(min-width:761px){html:not(:lang(zh)) .phero.full .p::before{background:linear-gradient(90deg,rgba(22,18,14,.6),rgba(22,18,14,.34) 36%,transparent 64%),linear-gradient(rgba(20,24,28,.32),transparent 170px)}}
 @media(max-width:760px){html:not(:lang(zh)) .phero h1,html:not(:lang(zh)) .ahero .bt h1{font-size:31px}}
+
+/* 11-22：小哲不要在脚踝、手掌上下刀，能放原图的地方不裁。
+   照片本身是 2:3 的位置（作品封面、首页和关于页的竖图条、报价页配图、流程页配图、联系页配图）都按原比例放，不再裁成 4:5、3:4 */
+.card figure,.strip figure,.pk figure,.proc figure,.side figure{aspect-ratio:2/3}
+.pk figure.land{aspect-ratio:3/2}
+.ab figure,.abody figure{aspect-ratio:auto}.ab figure img,.abody figure img{height:auto;display:block}
+.rib .tr img{aspect-ratio:auto}
+.card:hover img,.js .card.rv.in:hover img{transform:scale(1.02)}
+@media(max-width:760px){.area figure{aspect-ratio:2/3}}
+/* 首屏大图非裁不可：build.py 给每张图写了一条底线 --by（占图高的比例）和图的高宽比 --hw，这条线以上保证露出来；框够高、整张放得下时不动。
+   --by2 是屏幕又宽又矮（框比照片扁很多）时换用的底线，比如坐着的两个人：放得下就留脚，放不下就裁在小腿上段，不裁在脚踝。
+   轮播的缓慢缩放以底边为准，放大时不会把底线以上的东西挤出去 */
+@supports (width:1cqw){
+ .slide:has(>img[style*="--by"]),.phero .p:has(>img[style*="--by"]){container-type:size}
+ .slide>img[style*="--by"],.phero .p>img[style*="--by"]{object-position:50% min(0px,calc(100cqh - var(--by)*var(--hw)*100cqw))}
+ .slide>img[style*="--by"]{transform-origin:50% 100%}
+ @container (min-aspect-ratio:97/100){.slide>img[style*="--by2"],.phero .p>img[style*="--by2"]{object-position:50% min(0px,calc(100cqh - var(--by2)*var(--hw)*100cqw))}}
+}
+
+/* 11-22：手机上关于页的头像照片再往下让一点，量的时候按苹果手机地址栏收起后的高度（svh）算，不然最后一个镜头的眼睛会被照片上沿挡住 */
+@media(max-width:760px){.ahero .mid{margin-top:-6vh;margin-top:-6svh}}
+/* 联系表单里日期选错时框下面的提示 */
+.f .fe{display:block;margin-top:6px;font-size:12px;line-height:1.5;color:#a4442b}.f .fe:empty{display:none}
+/* 用键盘 Tab 走到链接和按钮时能看见停在哪 */
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+footer .c small a:hover{color:var(--ink)}
+/* 手机上页脚的链接手指好点一些 */
+@media(max-width:760px){footer nav a,footer .c small a{display:inline-block;padding:7px 0}}

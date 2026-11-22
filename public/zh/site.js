@@ -61,12 +61,17 @@
     var tp=new URLSearchParams(location.search).get('type'),st=form.querySelector('#f-type');
     if(tp&&map[tp]&&st){st.value=map[tp][0];sync(st);if(map[tp][1]){var o=d.getElementById('f-type-ot');if(o)o.value=map[tp][1]}}
     var today=new Date(),iso=new Date(today.getTime()-today.getTimezoneOffset()*6e4).toISOString().slice(0,10);
-    var d1=form.querySelector('#f-date'),d2=form.querySelector('#f-date2');if(d1){d1.min=iso;d1.addEventListener('change',function(){if(d2)d2.min=d1.value||iso})}if(d2)d2.min=iso;
+    var d1=form.querySelector('#f-date'),d2=form.querySelector('#f-date2');
+    // 日期：不能早于今天，结束日期不能早于拍摄日期。iPhone 的日期滚轮不认 min，选错了这里清掉并在框下面说明
+    function note(el,t){var s=el.parentNode.querySelector('.fe');if(!s){s=d.createElement('small');s.className='fe';s.setAttribute('role','alert');el.parentNode.appendChild(s)}s.textContent=t||''}
+    function chk(){if(d1){if(d1.value&&d1.value<iso){d1.value='';note(d1,form.dataset.past)}else if(d1.value)note(d1,'');if(d2)d2.min=d1.value||iso}
+      if(d2){var lo=(d1&&d1.value)||iso;if(d2.value&&d2.value<lo){d2.value='';note(d2,(d1&&d1.value)?form.dataset.order:form.dataset.past)}else if(d2.value)note(d2,'')}}
+    if(d1){d1.min=iso;d1.addEventListener('change',chk);d1.addEventListener('blur',chk)}if(d2){d2.min=iso;d2.addEventListener('change',chk);d2.addEventListener('blur',chk)}
     var msg=form.querySelector('.msg'),btn=form.querySelector('button[type=submit]');
     form.addEventListener('submit',function(e){e.preventDefault();
       msg.classList.remove('err');msg.textContent=msg.dataset.sending;btn.disabled=true;
       fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||j.success===false)throw 0})})
-      .then(function(){form.reset();$('select[data-other]',form).forEach(sync);msg.textContent=msg.dataset.ok})
+      .then(function(){form.reset();$('select[data-other]',form).forEach(sync);$('.fe',form).forEach(function(s){s.textContent=''});msg.textContent=msg.dataset.ok})
       .catch(function(){msg.textContent=msg.dataset.err;msg.classList.add('err')})
       .then(function(){btn.disabled=false;msg.focus&&msg.focus()})});
   });
